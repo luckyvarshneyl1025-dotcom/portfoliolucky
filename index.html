@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Varshney | Graphic Designer & Creative Editor Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (Used for UI Icons) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Tailwind Custom Configuration for theme colors
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            200: '#b9ddfd',
+                            300: '#7cc2fc',
+                            400: '#36a3fa',
+                            500: '#0c87eb',
+                            600: '#0069c6',
+                            700: '#0054a1',
+                            800: '#004785',
+                            900: '#061c30', // Deep Dark Blue primary
+                            950: '#030e1a', // Absolute darkest blue
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for non-Tailwind overrides and beautiful scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #061c30;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Glassmorphism subtle utilities */
+        .glass-nav {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-nav {
+            background-color: rgba(3, 14, 26, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        
+        /* Timeline styling */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 16px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+        .dark .timeline-line::before {
+            background: #1e293b;
+        }
+
+        /* Animation class trigger */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* PREMIUM GLOWING ANIMATED GRADIENT PROGRESS BARS */
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glowing-bar-inner {
+            background-size: 200% auto;
+            animation: gradient-flow 3s ease infinite;
+            transition: width 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* 3D SKILL CARD SPECIFIC STYLES */
+        .perspective-1000 {
+            perspective: 1500px;
+        }
+        .card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        /* Floating particles behind card */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+        .float-particle {
+            animation: float-slow 6s ease-in-out infinite;
+        }
+        .float-particle-delayed {
+            animation: float-slow 8s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        @keyframes shine {
+            100% { transform: translateX(100%) skewX(-12deg); }
+        }
+
+
+        /* SHOWCASE SECTION ANIMATIONS */
+        @keyframes showcaseFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+        @keyframes borderGlowMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .showcase-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.55s ease, border-color 0.55s ease;
+        }
+        .showcase-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.55rem;
+            background: linear-gradient(120deg, rgba(12,135,235,0), rgba(12,135,235,0.6), rgba(129,140,248,0.6), rgba(12,135,235,0));
+            background-size: 250% 250%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.45s ease;
+            animation: borderGlowMove 4s ease infinite;
+        }
+        .showcase-card:hover {
+            transform: translateY(-10px) scale(1.015);
+            box-shadow: 0 25px 70px rgba(2, 6, 23, 0.16);
+        }
+        .dark .showcase-card:hover {
+            box-shadow: 0 25px 70px rgba(12, 135, 235, 0.16);
+        }
+        .showcase-card:hover::before {
+            opacity: 1;
+        }
+        .showcase-card:hover .showcase-art {
+            transform: scale(1.06);
+        }
+        .showcase-card:hover .showcase-chip {
+            transform: translateY(-3px);
+        }
+        .showcase-floating-badge {
+            animation: showcaseFloat 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-brand-900 font-sans transition-colors duration-300 dark:bg-brand-950 dark:text-slate-100 overflow-x-hidden">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav border-b border-slate-200/50 dark:border-brand-900/50 py-4" id="main-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-12">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center space-x-2">
+                    <span class="w-10 h-10 bg-gradient-to-tr from-brand-600 to-sky-400 rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-brand-500/20">
+                        LV
+                    </span>
+                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-brand-900 to-brand-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+                        Lucky Varshney
+                    </span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#home" class="text-brand-900 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
+                    <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
+                    <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Skills</a>
+                    <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Experience</a>
+                    <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Projects</a>
+                    <a href="#showcase" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Showcase</a>
+                    <a href="#services" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Services</a>
+                    <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Actions (Theme, Resume button) -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-brand-900 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-brand-900/40 transition-colors" aria-label="Toggle Theme">
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    </button>
+                    <!-- Resume Button -->
+                    <button onclick="downloadResume()" class="inline-flex items-center space-x-2 px-4 py-2 text-sm font-semibold rounded-xl bg-brand-900 text-white hover:bg-brand-800 dark:bg-brand-600 dark:hover:bg-brand-500 transition-all shadow-sm">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Resume</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-brand-900/40">
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-brand-900/40 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 border-t border-slate-200 dark:border-brand-900/50 bg-white/95 dark:bg-brand-950/95 backdrop-blur-md">
+            <a href="#home" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-brand-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-brand-900/30">Home</a>
+            <a href="#about" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">About</a>
+            <a href="#skills" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">Skills</a>
+            <a href="#experience" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">Experience</a>
+            <a href="#projects" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">Projects</a>
+            <a href="#showcase" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">Showcase</a>
+            <a href="#services" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">Services</a>
+            <a href="#contact" class="block px-3 py-2.5 rounded-lg text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-900/30">Contact</a>
+            <button onclick="downloadResume()" class="w-full mt-2 inline-flex items-center justify-center space-x-2 px-4 py-2.5 text-base font-semibold rounded-lg bg-brand-900 text-white dark:bg-brand-600 hover:bg-brand-800 transition-all">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                <span>Download Resume</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Subtle Grid Background -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] dark:opacity-20"></div>
+        
+        <!-- Subtle Abstract Accents (Realistic designer circles/frames) -->
+        <div class="absolute top-1/4 right-10 w-96 h-96 bg-brand-200/40 dark:bg-brand-900/20 rounded-full filter blur-3xl -z-10 animate-pulse-slow"></div>
+        <div class="absolute bottom-10 left-10 w-72 h-72 bg-sky-200/30 dark:bg-sky-950/10 rounded-full filter blur-2xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-800 dark:bg-brand-900/60 dark:text-brand-300 text-xs font-semibold uppercase tracking-wider animate-bounce">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Available for Internships & Projects</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1]">
+                        <span class="block text-slate-800 dark:text-slate-100">Lucky Varshney</span>
+                        <span class="block bg-gradient-to-r from-brand-700 via-brand-600 to-sky-500 dark:from-brand-400 dark:via-sky-400 dark:to-brand-300 bg-clip-text text-transparent mt-2">
+                            Graphic Designer & Creative Editor
+                        </span>
+                    </h1>
+
+                    <p class="text-lg sm:text-xl font-medium text-slate-600 dark:text-slate-300">
+                        Creating Posters, Banners & Creative Visual Designs
+                    </p>
+
+                    <p class="max-w-2xl mx-auto lg:mx-0 text-slate-600 dark:text-slate-400 leading-relaxed text-base">
+                        Hi, I’m Lucky, a passionate, detail-oriented fresher graphic designer eager to craft beautiful, practical visual solutions. I blend typography, structural layouts, and modern aesthetics to turn raw ideas into print-ready artwork and captivating digital creatives.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#showcase" class="w-full sm:w-auto px-8 py-3.5 text-base font-bold rounded-xl text-white bg-brand-900 dark:bg-brand-600 hover:bg-brand-800 dark:hover:bg-brand-500 shadow-lg shadow-brand-900/10 dark:shadow-brand-500/10 transition-all text-center flex items-center justify-center space-x-2">
+                            <span>View Showcase</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <button onclick="scrollToSkillCard()" class="w-full sm:w-auto px-8 py-3.5 text-base font-bold rounded-xl text-white bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 shadow-lg shadow-indigo-500/20 dark:shadow-indigo-500/30 transition-all text-center flex items-center justify-center space-x-2 border border-indigo-400/30 group cursor-pointer relative overflow-hidden">
+                            <span class="absolute inset-0 w-full h-full bg-white/10 transform -skew-x-12 -translate-x-full group-hover:animate-[shine_0.75s_ease-out]"></span>
+                            <i data-lucide="credit-card" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            <span>My Skill Card</span>
+                        </button>
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 text-base font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-white dark:bg-brand-900/40 border border-slate-200 dark:border-brand-900/80 hover:bg-slate-50 dark:hover:bg-brand-900/80 transition-all text-center">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Right Interactive Illustration (Realistic Designer Canvas Workspace) -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-[420px] aspect-square rounded-3xl bg-white dark:bg-brand-900/20 border border-slate-200/80 dark:border-brand-900/50 shadow-xl p-6 flex flex-col justify-between overflow-hidden group">
+                        <!-- Top header of mockup canvas -->
+                        <div class="flex items-center justify-between border-b border-slate-100 dark:border-brand-900/60 pb-4">
+                            <div class="flex items-center space-x-1.5">
+                                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                            </div>
+                            <span class="text-xs font-mono text-slate-400 dark:text-slate-500">lucky_creative_canvas.cdr</span>
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-slate-400"></i>
+                        </div>
+
+                        <!-- Mid canvas element drawing representation -->
+                        <div class="flex-1 my-6 flex items-center justify-center relative bg-slate-50 dark:bg-brand-950/40 rounded-xl border border-dashed border-slate-200 dark:border-brand-800">
+                            <!-- Simulated design guides -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+                                <div class="w-full h-[1px] bg-sky-500"></div>
+                                <div class="h-full w-[1px] bg-sky-500 absolute"></div>
+                            </div>
+                            
+                            <!-- Interactive shape simulation -->
+                            <div class="relative w-44 h-44 rounded-2xl bg-gradient-to-tr from-brand-600 to-sky-400 flex flex-col items-center justify-center text-white shadow-lg shadow-brand-500/20 group-hover:rotate-6 transition-transform duration-500 cursor-pointer p-4 text-center">
+                                <i data-lucide="palette" class="w-10 h-10 mb-2 animate-bounce"></i>
+                                <span class="font-extrabold text-sm uppercase tracking-wider">Design Studio</span>
+                                <span class="text-[10px] opacity-80 mt-1">CorelDRAW & Photoshop</span>
+                            </div>
+
+                            <!-- Tiny absolute designer UI elements -->
+                            <div class="absolute top-4 left-4 p-2 bg-white dark:bg-brand-900 rounded-lg shadow-md border border-slate-100 dark:border-brand-800 flex items-center space-x-2 text-xs">
+                                <i data-lucide="type" class="w-4 h-4 text-brand-600"></i>
+                                <span class="font-semibold text-slate-700 dark:text-slate-300">Typography</span>
+                            </div>
+                            
+                            <div class="absolute bottom-4 right-4 p-2 bg-white dark:bg-brand-900 rounded-lg shadow-md border border-slate-100 dark:border-brand-800 flex items-center space-x-2 text-xs">
+                                <i data-lucide="crop" class="w-4 h-4 text-emerald-500"></i>
+                                <span class="font-semibold text-slate-700 dark:text-slate-300">Vector Grid</span>
+                            </div>
+                        </div>
+
+                        <!-- Canvas Bottom Stats -->
+                        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span class="flex items-center space-x-1">
+                                <i data-lucide="mouse-pointer" class="w-3.5 h-3.5"></i>
+                                <span>Tool: Pick Tool</span>
+                            </span>
+                            <span>Zoom: 100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW 3D SKILL CARD SECTION -->
+    <section id="skill-card-section" class="py-20 bg-slate-100 dark:bg-brand-950/60 relative overflow-hidden reveal border-b border-slate-200/50 dark:border-brand-900/40">
+        <!-- Floating Ambient Glow Particles -->
+        <div class="absolute top-1/4 left-1/3 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl float-particle pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl float-particle-delayed pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+            <div class="text-center space-y-4 mb-12">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>Interactive Experience</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+                    My Designer ID Card
+                </h2>
+                <p class="max-w-xl mx-auto text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Click the card below to flip it in 3D perspective and view live verified technical parameters.
+                </p>
+            </div>
+
+            <!-- Landscape 3D Card Container -->
+            <div class="w-full max-w-2xl aspect-[1.6/1] perspective-1000 cursor-pointer group mb-4" onclick="toggleCardFlip()">
+                <div id="designer-id-card" class="w-full h-full card-inner relative rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-white/20 dark:border-brand-900/30">
+                    
+                    <!-- FRONT SIDE OF CARD (Glassmorphism layout) -->
+                    <div class="absolute inset-0 w-full h-full card-face rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden bg-white/70 dark:bg-brand-900/40 backdrop-blur-xl border border-white/40 dark:border-brand-800/40">
+                        <!-- Chip & Hologram row -->
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center space-x-4">
+                                <!-- Simulated Smart Card Chip -->
+                                <div class="w-12 h-9 bg-gradient-to-tr from-amber-400 to-yellow-200 rounded-lg relative overflow-hidden shadow-inner border border-amber-500/30">
+                                    <div class="absolute inset-x-0 top-3 h-[1px] bg-amber-700/30"></div>
+                                    <div class="absolute inset-x-0 bottom-3 h-[1px] bg-amber-700/30"></div>
+                                    <div class="absolute inset-y-0 left-4 w-[1px] bg-amber-700/30"></div>
+                                    <div class="absolute inset-y-0 right-4 w-[1px] bg-amber-700/30"></div>
+                                </div>
+                                <div class="text-left">
+                                    <span class="text-[10px] font-mono tracking-widest text-slate-400 dark:text-slate-500 block">ID CLASS</span>
+                                    <span class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">CREATIVE FIELD-ID</span>
+                                </div>
+                            </div>
+                            <!-- Brand logo inside card -->
+                            <div class="flex items-center space-x-1">
+                                <span class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-black text-sm">LV</span>
+                                <span class="font-extrabold text-sm tracking-tight text-slate-800 dark:text-slate-200 hidden sm:inline-block">Lucky Varshney</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Body: Profile Grid -->
+                        <div class="grid grid-cols-12 gap-4 items-center">
+                            <!-- Avatar container -->
+                            <div class="col-span-3 sm:col-span-2.5">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-md border border-white/20">
+                                    <i data-lucide="user" class="w-10 h-10"></i>
+                                </div>
+                            </div>
+                            <!-- Details -->
+                            <div class="col-span-9 sm:col-span-9.5 text-left pl-2">
+                                <h3 class="text-xl sm:text-2xl font-black text-slate-950 dark:text-slate-100 tracking-tight leading-tight">Lucky Varshney</h3>
+                                <p class="text-xs sm:text-sm font-semibold text-brand-600 dark:text-brand-400">Graphic Designer & Creative Editor</p>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[10px] sm:text-xs font-medium text-slate-500 dark:text-slate-400">
+                                    <span class="flex items-center"><i data-lucide="building" class="w-3.5 h-3.5 mr-1"></i> Krishna Prints</span>
+                                    <span class="flex items-center"><i data-lucide="map-pin" class="w-3.5 h-3.5 mr-1"></i> Noida, IN</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="flex justify-between items-end border-t border-slate-200/50 dark:border-brand-800/50 pt-3">
+                            <div class="text-left">
+                                <span class="text-[9px] font-mono tracking-widest text-slate-400 dark:text-slate-500 block uppercase">Verification Serial</span>
+                                <span class="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">LV-2026-N954</span>
+                            </div>
+                            <div class="flex items-center space-x-1.5 text-xs text-brand-600 dark:text-brand-400 font-bold bg-brand-50 dark:bg-brand-900/40 px-3 py-1.5 rounded-xl animate-pulse">
+                                <i data-lucide="rotate-3d" class="w-4 h-4"></i>
+                                <span>Click to Flip</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BACK SIDE OF CARD (Skills details) -->
+                    <div class="absolute inset-0 w-full h-full card-face card-back rounded-3xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden bg-slate-900 dark:bg-brand-950 border border-slate-800/80 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                            <span class="text-xs font-mono font-bold text-indigo-400 tracking-wider">TECHNICAL SKILLS PROFILES</span>
+                            <span class="text-[10px] font-mono text-slate-500">SYSTEM STABILITY: OPTIMAL</span>
+                        </div>
+
+                        <!-- Card Back Skills Progress List -->
+                        <div class="space-y-2.5 my-3">
+                            <!-- Skill 1: CorelDRAW -->
+                            <div class="space-y-0.5">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-300 text-left">
+                                    <span>CorelDRAW</span>
+                                    <span class="card-skill-counter font-mono font-bold text-indigo-400" data-card-target="95">0%</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="card-skill-progress bg-gradient-to-r from-blue-500 to-indigo-500 h-full rounded-full transition-all duration-[1500ms] ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            <!-- Skill 2: Canva -->
+                            <div class="space-y-0.5">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-300 text-left">
+                                    <span>Canva</span>
+                                    <span class="card-skill-counter font-mono font-bold text-purple-400" data-card-target="90">0%</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="card-skill-progress bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full transition-all duration-[1500ms] ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            <!-- Skill 3: Photoshop -->
+                            <div class="space-y-0.5">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-300 text-left">
+                                    <span>Photoshop</span>
+                                    <span class="card-skill-counter font-mono font-bold text-sky-400" data-card-target="60">0%</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="card-skill-progress bg-gradient-to-r from-sky-500 to-indigo-500 h-full rounded-full transition-all duration-[1500ms] ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            <!-- Skill 4: Filmora -->
+                            <div class="space-y-0.5">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-300 text-left">
+                                    <span>Filmora</span>
+                                    <span class="card-skill-counter font-mono font-bold text-rose-400" data-card-target="75">0%</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="card-skill-progress bg-gradient-to-r from-rose-500 to-pink-500 h-full rounded-full transition-all duration-[1500ms] ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            <!-- Skill 5: Typography -->
+                            <div class="space-y-0.5">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-300 text-left">
+                                    <span>Typography</span>
+                                    <span class="card-skill-counter font-mono font-bold text-emerald-400" data-card-target="85">0%</span>
+                                </div>
+                                <div class="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="card-skill-progress bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full transition-all duration-[1500ms] ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer back -->
+                        <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-[10px] text-slate-500 font-mono">
+                            <span>* Click card again to return</span>
+                            <span class="text-indigo-400 font-bold flex items-center"><i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1"></i> VERIFIED</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="py-20 md:py-28 bg-white dark:bg-brand-950/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left: Profile Mock Frame -->
+                <div class="lg:col-span-5 reveal">
+                    <div class="relative">
+                        <!-- Background Decorative Border Box -->
+                        <div class="absolute -inset-4 rounded-3xl border-2 border-brand-200 dark:border-brand-900/60 -z-10 translate-x-3 translate-y-3"></div>
+                        <!-- Profile Card -->
+                        <div class="bg-slate-50 dark:bg-brand-900/30 rounded-3xl p-6 border border-slate-200 dark:border-brand-900 shadow-xl overflow-hidden">
+                            <!-- Styled Profile Placeholder/Illustrative Face -->
+                            <div class="w-full h-64 bg-gradient-to-br from-brand-900 to-brand-700 rounded-2xl flex flex-col items-center justify-center text-white relative p-6">
+                                <div class="absolute top-4 right-4">
+                                    <span class="px-2 py-1 bg-white/20 backdrop-blur-md rounded text-[10px] font-bold tracking-wider uppercase">FRESHEER</span>
+                                </div>
+                                <div class="w-24 h-24 rounded-full bg-white/10 border-4 border-white/20 flex items-center justify-center mb-4">
+                                    <i data-lucide="user" class="w-12 h-12 text-white"></i>
+                                </div>
+                                <h3 class="font-bold text-xl">Lucky Varshney</h3>
+                                <p class="text-sm text-brand-200 font-medium">Graphic Designer & Creative Editor</p>
+                            </div>
+
+                            <div class="mt-6 space-y-4">
+                                <div class="flex items-center justify-between text-sm border-b border-slate-200 dark:border-brand-900/60 pb-2">
+                                    <span class="text-slate-500 dark:text-slate-400">Current Role</span>
+                                    <span class="font-semibold text-brand-900 dark:text-slate-200">Graphic Design Intern</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm border-b border-slate-200 dark:border-brand-900/60 pb-2">
+                                    <span class="text-slate-500 dark:text-slate-400">Experience Hub</span>
+                                    <span class="font-semibold text-brand-900 dark:text-slate-200">Krishna Prints, Surir</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm pb-2">
+                                    <span class="text-slate-500 dark:text-slate-400">Targeting</span>
+                                    <span class="font-semibold text-brand-950 dark:text-brand-400">Design Internships (IIMT & more)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: About Description -->
+                <div class="lg:col-span-7 space-y-6 reveal">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 dark:bg-brand-900/60 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">
+                        <span>Who I Am</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+                        About Lucky Varshney
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-base">
+                        I am a focused, adaptive, and highly imaginative **Fresher Graphic Designer** specializing in vector design, typography alignment, and print-ready production files. My hands-on background at **Krishna Prints, Surir** has trained me in executing customer design requests efficiently under real timelines.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-base">
+                        My expertise centers closely on **CorelDRAW**, **Canva**, and basic **Photoshop**, which allows me to work comfortably across web-based templates as well as robust vector compositions for physical print structures. I thrive on creating clean layout patterns that communicate a brand’s core message instantly.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-brand-900/20 border border-slate-200 dark:border-brand-900/60 flex items-start space-x-3">
+                            <div class="p-2 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-400 rounded-lg">
+                                <i data-lucide="printer" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-slate-200">Print Design Specialist</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Skilled in producing exact pixel sizes, flex bleed grids, and rich color modes (CMYK).</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-brand-900/20 border border-slate-200 dark:border-brand-900/60 flex items-start space-x-3">
+                            <div class="p-2 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-400 rounded-lg">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-slate-200">Creative Content Enthusiast</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Committed to developing unique design assets with strong structural logic and colors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION (ULTRA-SMOOTH ANIMATED SKILL BARS WITH NEON GLOW) -->
+    <section id="skills" class="py-20 md:py-28 bg-slate-900 text-white relative overflow-hidden">
+        <!-- Abstract Deep Violet Background Glow behind Skills -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/10 dark:bg-indigo-900/10 rounded-full filter blur-[120px] pointer-events-none -z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[300px] h-[300px] bg-purple-600/10 dark:bg-purple-900/10 rounded-full filter blur-[100px] pointer-events-none -z-10"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center space-y-4 mb-16 reveal">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-indigo-300 text-xs font-bold uppercase tracking-wider">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 animate-pulse text-indigo-400"></i>
+                    <span>Expertise Meter</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    My Creative Skillset
+                </h2>
+                <p class="max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
+                    These animated progress meters represent actual vector mastery and visual communication parameters verified in commercial print environment workloads.
+                </p>
+            </div>
+
+            <!-- Glowing Obsidian Skill Container -->
+            <div class="relative bg-slate-950/60 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-8 transition-transform duration-500 hover:scale-[1.01] hover:border-slate-700/80 reveal" id="skills-container-box">
+                
+                <!-- Skill 1: CorelDRAW -->
+                <div class="space-y-3 group">
+                    <div class="flex justify-between items-end">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-500 tracking-wider uppercase">VECTORS & PACKAGING</span>
+                            <h3 class="font-extrabold text-lg text-slate-100 flex items-center">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-500 mr-2.5 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></span>
+                                CorelDRAW
+                            </h3>
+                        </div>
+                        <span class="skill-counter-val text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 font-mono" data-target="95">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-900 h-3.5 rounded-full p-[2px] border border-slate-800/80 overflow-hidden">
+                        <!-- Progress Inner Bar with moving gradient and outer box-glow -->
+                        <div class="skill-bar-inner glowing-bar-inner h-full rounded-full bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400 shadow-[0_0_12px_rgba(99,102,241,0.5)]" style="width: 0%;" data-target="95"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Primary production-level engine for commercial flex banners, posters, precise scale grid layouts, and vector path tracing designs.</p>
+                </div>
+
+                <!-- Skill 2: Canva -->
+                <div class="space-y-3 group">
+                    <div class="flex justify-between items-end">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-500 tracking-wider uppercase">LAYOUT & TYPOGRAPHY TEMPLATES</span>
+                            <h3 class="font-extrabold text-lg text-slate-100 flex items-center">
+                                <span class="w-2.5 h-2.5 rounded-full bg-purple-500 mr-2.5 shadow-[0_0_8px_rgba(168,85,247,0.8)]"></span>
+                                Canva
+                            </h3>
+                        </div>
+                        <span class="skill-counter-val text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400 font-mono" data-target="90">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-900 h-3.5 rounded-full p-[2px] border border-slate-800/80 overflow-hidden">
+                        <div class="skill-bar-inner glowing-bar-inner h-full rounded-full bg-gradient-to-r from-purple-600 via-indigo-500 to-pink-500 shadow-[0_0_12px_rgba(168,85,247,0.5)]" style="width: 0%;" data-target="90"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Used for rapid digital prototype mockups, visual assets orchestration, social media posts, and brand presentation layouts.</p>
+                </div>
+
+                <!-- Skill 3: Typography & Print Design -->
+                <div class="space-y-3 group">
+                    <div class="flex justify-between items-end">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-500 tracking-wider uppercase">COMMERCIAL GEOMETRY</span>
+                            <h3 class="font-extrabold text-lg text-slate-100 flex items-center">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 mr-2.5 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
+                                Typography & Print Design
+                            </h3>
+                        </div>
+                        <span class="skill-counter-val text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 font-mono" data-target="85">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-900 h-3.5 rounded-full p-[2px] border border-slate-800/80 overflow-hidden">
+                        <div class="skill-bar-inner glowing-bar-inner h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 shadow-[0_0_12px_rgba(16,185,129,0.5)]" style="width: 0%;" data-target="85"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Expert execution of crop margins, CMYK calibration grids, font weight visual hierarchy, and precise bleed parameters.</p>
+                </div>
+
+                <!-- Skill 4: Filmora / Video Editing -->
+                <div class="space-y-3 group">
+                    <div class="flex justify-between items-end">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-500 tracking-wider uppercase">MOTION TIMELINES & SOUND</span>
+                            <h3 class="font-extrabold text-lg text-slate-100 flex items-center">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 mr-2.5 shadow-[0_0_8px_rgba(244,63,94,0.8)]"></span>
+                                Filmora / Video Editing
+                            </h3>
+                        </div>
+                        <span class="skill-counter-val text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-pink-400 font-mono" data-target="75">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-900 h-3.5 rounded-full p-[2px] border border-slate-800/80 overflow-hidden">
+                        <div class="skill-bar-inner glowing-bar-inner h-full rounded-full bg-gradient-to-r from-rose-500 via-pink-500 to-orange-400 shadow-[0_0_12px_rgba(244,63,94,0.5)]" style="width: 0%;" data-target="75"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Editing energetic short clips, promotional video reels, smooth frame transitions, and background track alignment.</p>
+                </div>
+
+                <!-- Skill 5: Photoshop -->
+                <div class="space-y-3 group">
+                    <div class="flex justify-between items-end">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-slate-500 tracking-wider uppercase">MASKING & TOUCHUPS</span>
+                            <h3 class="font-extrabold text-lg text-slate-100 flex items-center">
+                                <span class="w-2.5 h-2.5 rounded-full bg-sky-500 mr-2.5 shadow-[0_0_8px_rgba(14,165,233,0.8)]"></span>
+                                Photoshop
+                            </h3>
+                        </div>
+                        <span class="skill-counter-val text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300 font-mono" data-target="60">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-900 h-3.5 rounded-full p-[2px] border border-slate-800/80 overflow-hidden">
+                        <div class="skill-bar-inner glowing-bar-inner h-full rounded-full bg-gradient-to-r from-sky-550 via-sky-450 to-blue-400 shadow-[0_0_12px_rgba(14,165,233,0.5)]" style="width: 0%;" data-target="60"></div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Responsible for smart object mockup creation, custom brush adjustments, background extractions, and light corrections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="py-20 md:py-28 bg-white dark:bg-brand-950/40 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-16 reveal">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-200 text-slate-800 dark:bg-brand-900/60 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">
+                    <span>Professional History</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+                    My Internship Timeline
+                </h2>
+                <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
+                    Real-world hands-on design execution at active print shops, learning industrial processes first-hand.
+                </p>
+            </div>
+
+            <!-- Timeline Line Grid -->
+            <div class="relative timeline-line pl-8 sm:pl-12 space-y-12 reveal">
+                <!-- Internship Card -->
+                <div class="relative group">
+                    <!-- Bullet dot -->
+                    <div class="absolute -left-[32px] sm:-left-[48px] top-1.5 w-6 h-6 bg-white dark:bg-brand-950 rounded-full border-4 border-brand-600 flex items-center justify-center transition-transform group-hover:scale-125 z-10"></div>
+                    
+                    <div class="bg-slate-50 dark:bg-brand-900/20 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-lg relative transition-all hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-800">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/60 dark:border-brand-900/60 pb-4 mb-6">
+                            <div>
+                                <span class="px-2.5 py-1 bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-300 text-[10px] font-bold rounded-md tracking-wider uppercase">Active Intern</span>
+                                <h3 class="text-xl sm:text-2xl font-bold text-slate-950 dark:text-slate-100 mt-1.5">Graphic Design Intern</h3>
+                                <p class="text-sm font-semibold text-slate-600 dark:text-slate-400 flex items-center mt-1">
+                                    <i data-lucide="building-2" class="w-4 h-4 mr-1.5 text-brand-600"></i>
+                                    Krishna Prints, Surir
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-1.5 text-xs font-bold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/40 px-3 py-1.5 rounded-xl self-start sm:self-center">
+                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                <span>March 2026 – Present</span>
+                            </div>
+                        </div>
+
+                        <!-- Highlights list -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500">Core Responsibilities</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start space-x-3 text-slate-600 dark:text-slate-300 text-sm">
+                                    <span class="mt-1 w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0"></span>
+                                    <span><strong>Banners, Posters & Flex Layouts:</strong> Engineered complex physical assets using vector measurements to safeguard printing boundaries and sharp layouts.</span>
+                                </li>
+                                <li class="flex items-start space-x-3 text-slate-600 dark:text-slate-300 text-sm">
+                                    <span class="mt-1 w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0"></span>
+                                    <span><strong>Social Media Creatives:</strong> Curated ready-to-publish digital posts following color contrasts and clean layout guidelines for various small-medium business brands.</span>
+                                </li>
+                                <li class="flex items-start space-x-3 text-slate-600 dark:text-slate-300 text-sm">
+                                    <span class="mt-1 w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0"></span>
+                                    <span><strong>Print-Ready Files:</strong> Performed pre-press tasks such as converting fonts to curves (outlining), setting CMYK color targets, and preparing files in formats like PDF, CDR, and TIFF.</span>
+                                </li>
+                                <li class="flex items-start space-x-3 text-slate-600 dark:text-slate-300 text-sm">
+                                    <span class="mt-1 w-1.5 h-1.5 rounded-full bg-brand-600 flex-shrink-0"></span>
+                                    <span><strong>Customer Design Handling:</strong> Engaged directly with customers to take design briefs, suggest creative variations, and implement fast real-time feedback edits.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION (Beautifully rendered modern inline SVG placeholders) -->
+    <section id="projects" class="py-20 md:py-28 bg-slate-50 dark:bg-brand-950/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-16 reveal">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-200 text-slate-800 dark:bg-brand-900/60 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">
+                    <span>Portfolio Showroom</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+                    Featured Designs & Artwork
+                </h2>
+                <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
+                    A curated selection of physical prints, corporate business cards, and social media templates designed with optimal spacing and contrast.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+                <!-- Project Card 1: College Event Poster -->
+                <div class="bg-white dark:bg-brand-900/15 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-lg overflow-hidden group hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-800 transition-all flex flex-col justify-between">
+                    <div>
+                        <!-- Project High-Fidelity SVG Art -->
+                        <div class="w-full h-64 bg-brand-950 flex items-center justify-center p-4 relative overflow-hidden">
+                            <!-- Simulated design guides for graphic aesthetic -->
+                            <div class="absolute inset-2 border border-brand-800/30 rounded flex items-center justify-center">
+                                <div class="w-full h-[1px] bg-brand-800/10"></div>
+                                <div class="h-full w-[1px] bg-brand-800/10 absolute"></div>
+                            </div>
+                            <!-- Real designed graphic simulation -->
+                            <svg class="w-full h-full max-h-[190px]" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="200" rx="12" fill="#061C30"/>
+                                <path d="M0 100 C 150 150, 250 50, 400 100 L 400 200 L 0 200 Z" fill="#0054A1" opacity="0.3"/>
+                                <path d="M0 120 C 100 180, 300 120, 400 160 L 400 200 L 0 200 Z" fill="#0C87EB" opacity="0.5"/>
+                                <circle cx="200" cy="80" r="45" stroke="#36A3FA" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+                                <text x="200" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">ANNUAL TECH FEST</text>
+                                <text x="200" y="115" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="22" fill="#36A3FA" text-anchor="middle">CREATIVE INSIGHT</text>
+                                <text x="200" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="9" fill="#E2E8F0" text-anchor="middle">IIMT CAMPUS | NOIDA | 2026</text>
+                            </svg>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold text-white bg-brand-600 px-2 py-1 rounded">POSTER DESIGN</span>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-950 dark:text-slate-100">College Event Poster</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                Designed a conceptual tech-fest promotional poster leveraging custom typography alignments, rich contrasting colors, and perfect spacing margins.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectDetails('College Event Poster', 'Developed for college promotions with strict visual hierarchies, grid balance, and responsive layout scaling to keep the visual presentation outstanding on digital boards and wall flyers.')" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-brand-900 hover:bg-slate-100 dark:hover:bg-brand-800 transition-colors">
+                            <span>Inspect Canvas details</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Flex Banner Design -->
+                <div class="bg-white dark:bg-brand-900/15 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-lg overflow-hidden group hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-800 transition-all flex flex-col justify-between">
+                    <div>
+                        <!-- Project High-Fidelity SVG Art -->
+                        <div class="w-full h-64 bg-slate-100 dark:bg-brand-900/40 flex items-center justify-center p-4 relative overflow-hidden">
+                            <div class="absolute inset-2 border border-slate-200 dark:border-brand-800 rounded"></div>
+                            <svg class="w-full h-full max-h-[190px]" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="200" rx="12" fill="#FFFFFF"/>
+                                <rect x="20" y="20" width="360" height="160" rx="8" fill="#F1F5F9"/>
+                                <path d="M20 20 L 150 20 L 80 180 L 20 180 Z" fill="#0054A1" opacity="0.9"/>
+                                <path d="M380 180 L 250 180 L 320 20 L 380 20 Z" fill="#36A3FA" opacity="0.8"/>
+                                <text x="200" y="90" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="28" fill="#061C30" text-anchor="middle">KRISHNA PRINTS</text>
+                                <text x="200" y="125" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="12" fill="#0069C6" text-anchor="middle" letter-spacing="4">FLEX & POSTER PRINTING</text>
+                                <line x1="120" y1="140" x2="280" y2="140" stroke="#CBD5E1" stroke-width="2"/>
+                            </svg>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold text-brand-900 bg-brand-100 px-2 py-1 rounded">FLEX BANNER</span>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-950 dark:text-slate-100">Flex Banner Design</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                Large-scale marketing layout created for shop facades. Scaled precisely using vector guides in CorelDRAW to assure sharp physical prints.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectDetails('Flex Banner Design', 'This layout was built targeting physical storefronts. Developed in CMYK space with accurate bleeding parameters, giving optimal high-contrast clarity even from large distances.')" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-brand-900 hover:bg-slate-100 dark:hover:bg-brand-800 transition-colors">
+                            <span>Inspect Canvas details</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Visiting Card Design -->
+                <div class="bg-white dark:bg-brand-900/15 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-lg overflow-hidden group hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-800 transition-all flex flex-col justify-between">
+                    <div>
+                        <!-- Project High-Fidelity SVG Art -->
+                        <div class="w-full h-64 bg-brand-900 flex items-center justify-center p-4 relative overflow-hidden">
+                            <div class="absolute inset-2 border border-brand-800/20 rounded"></div>
+                            <svg class="w-full h-full max-h-[190px]" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="200" rx="12" fill="#030E1A"/>
+                                <rect x="30" y="30" width="340" height="140" rx="6" fill="#061C30" stroke="#0054A1" stroke-width="1.5"/>
+                                <text x="60" y="80" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#FFFFFF">Lucky Varshney</text>
+                                <text x="60" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="9" fill="#36A3FA" letter-spacing="1">SENIOR CREATIVE CONSULTANT</text>
+                                <line x1="60" y1="115" x2="340" y2="115" stroke="#0054A1" stroke-width="1"/>
+                                <text x="60" y="135" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="8" fill="#E2E8F0">Phone: +91 8954865082</text>
+                                <text x="60" y="150" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="8" fill="#E2E8F0">Email: luckyvarshneyl.1025@gmail.com</text>
+                                <circle cx="310" cy="75" r="20" fill="#0054A1" opacity="0.3"/>
+                                <circle cx="310" cy="75" r="12" fill="#0C87EB"/>
+                            </svg>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold text-white bg-brand-600 px-2 py-1 rounded">VISITING CARD</span>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-950 dark:text-slate-100">Visiting Card Design</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                Standard business card layouts with highly clean grids, detailed vector icon alignments, readable miniature typography, and custom borders.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectDetails('Visiting Card Design', 'Standard 3.5 x 2 inch layout optimized for dual-sided offset litho printing. Highly focused on minimal margins and optimized readability at smaller scale sizes.')" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-brand-900 hover:bg-slate-100 dark:hover:bg-brand-800 transition-colors">
+                            <span>Inspect Canvas details</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project Card 4: Social Media Post Design -->
+                <div class="bg-white dark:bg-brand-900/15 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-lg overflow-hidden group hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-800 transition-all flex flex-col justify-between">
+                    <div>
+                        <!-- Project High-Fidelity SVG Art -->
+                        <div class="w-full h-64 bg-slate-100 dark:bg-brand-900/40 flex items-center justify-center p-4 relative overflow-hidden">
+                            <div class="absolute inset-2 border border-slate-200 dark:border-brand-850 rounded"></div>
+                            <svg class="w-full h-full max-h-[190px]" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="400" height="200" rx="12" fill="#E0EFFE"/>
+                                <rect x="30" y="30" width="120" height="140" rx="8" fill="#FFFFFF" stroke="#B9DDFD"/>
+                                <circle cx="90" cy="85" r="25" fill="#7CC2FC" opacity="0.6"/>
+                                <text x="90" y="140" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#004785" text-anchor="middle">NEW BRAND</text>
+                                <text x="230" y="80" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#004785">Modern Trends</text>
+                                <text x="230" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="28" fill="#0C87EB">UP TO 50%</text>
+                                <rect x="230" y="125" width="80" height="25" rx="6" fill="#004785"/>
+                                <text x="270" y="141" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="8" fill="#FFFFFF" text-anchor="middle">SHOP NOW</text>
+                            </svg>
+                            <span class="absolute top-4 left-4 text-[10px] font-bold text-brand-900 bg-brand-100 px-2 py-1 rounded">SOCIAL MEDIA</span>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-950 dark:text-slate-100">Social Media Post Design</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                Digital template built to drive social interactions. Uses engaging layouts, balanced call-to-actions, and premium dark/light blue contrasts.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openProjectDetails('Social Media Post Design', 'Built using standard 1:1 Instagram grid measurements (1080x1080), prioritizing rapid content scanning, dynamic overlay layers, and striking modern typography.')" class="w-full inline-flex items-center justify-center space-x-2 px-4 py-2.5 text-sm font-bold rounded-xl text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-brand-900 hover:bg-slate-100 dark:hover:bg-brand-800 transition-colors">
+                            <span>Inspect Canvas details</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SHOWCASE SECTION (Your real design samples gallery) -->
+    <section id="showcase" class="py-20 md:py-28 bg-white dark:bg-brand-950/40 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center space-y-4 mb-12 reveal">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-200 text-slate-800 dark:bg-brand-900/60 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">
+        <i data-lucide="images" class="w-4 h-4"></i>
+        <span>Design Showcase</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+        My Design Samples Gallery
+      </h2>
+
+      <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
+        My landscape design samples — posters, banners, visiting cards, social media posts and flex layouts.
+      </p>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto reveal">
+      <div class="relative aspect-video rounded-3xl overflow-hidden bg-slate-100 dark:bg-brand-900 border border-slate-200 dark:border-brand-800 shadow-2xl">
+
+        <div id="showcaseSlider" class="flex h-full transition-transform duration-700 ease-out">
+          <div class="min-w-full h-full">
+            <img src="images/showcase/sample1.jpg" class="w-full h-full object-cover" alt="Design Sample 1">
+          </div>
+          <div class="min-w-full h-full">
+            <img src="images/showcase/sample1.jpg" class="w-full h-full object-cover" alt="Design Sample 2">
+          </div>
+          <div class="min-w-full h-full">
+            <img src="images/showcase/sample1.jpg" class="w-full h-full object-cover" alt="Design Sample 3">
+          </div>
+          <div class="min-w-full h-full">
+            <img src="showcase/sample4.jpg" class="w-full h-full object-cover" alt="Design Sample 4">
+          </div>
+        </div>
+
+        <button onclick="prevShowcase()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-brand-950/90 text-brand-900 dark:text-white flex items-center justify-center shadow-lg hover:scale-110 transition">
+          <i data-lucide="chevron-left" class="w-7 h-7"></i>
+        </button>
+
+        <button onclick="nextShowcase()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 dark:bg-brand-950/90 text-brand-900 dark:text-white flex items-center justify-center shadow-lg hover:scale-110 transition">
+          <i data-lucide="chevron-right" class="w-7 h-7"></i>
+        </button>
+
+        <div id="showcaseDots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 md:py-28 bg-white dark:bg-brand-950/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-4 mb-16 reveal">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-200 text-slate-800 dark:bg-brand-900/60 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">
+                    <span>Expertise Offerings</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+                    What Services Do I Offer?
+                </h2>
+                <p class="max-w-2xl mx-auto text-slate-600 dark:text-slate-400">
+                    With robust training in pre-press design, digital assets, and video edits, I specialize in several professional graphic vectors.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                <!-- Service 1 -->
+                <div class="bg-slate-50 dark:bg-brand-900/10 p-8 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-400 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="layout-template" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-950 dark:text-slate-100">Banner Design</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                        Wide-format physical flex and digital banner graphics. Scaled carefully with custom grids, margin offsets, and clear visual priorities.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-50 dark:bg-brand-900/10 p-8 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-950 dark:text-slate-100">Poster Design</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                        Promotional and informational posters for commercial needs or academic fests. Highly prioritized visual flow and readable text spacing.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-50 dark:bg-brand-900/10 p-8 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="smartphone" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-950 dark:text-slate-100">Social Media Creatives</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                        Eye-catching visual slides, promotional carousels, and announcements for brands following strict contrast and modern grid alignment.
+                    </p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-slate-50 dark:bg-brand-900/10 p-8 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="contact-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-950 dark:text-slate-100">Visiting Card Design</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                        Clean business and portfolio cards set precisely to printing specifications. Optimized layout structure to highlight contact pathways.
+                    </p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-slate-50 dark:bg-brand-900/10 p-8 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-400 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="video" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-950 dark:text-slate-100">Basic Video Editing</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                        Short form content edit, transition alignments, motion adjustments, frame cuts, and audio pacing setups in Filmora.
+                    </p>
+                </div>
+
+                <!-- Live Designer Customization Block (Simulation) -->
+                <div class="bg-gradient-to-tr from-brand-900 to-brand-700 dark:from-brand-900 dark:to-brand-950 p-8 rounded-3xl border border-brand-800 text-white shadow-lg flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-md">LIVE CANVAS MOCK</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        </div>
+                        <h3 class="text-lg font-bold">Interactive Color Guide</h3>
+                        <p class="text-xs text-brand-200 mt-2">
+                            Check how Lucky's design vectors adapt across multiple color environments with a single tap!
+                        </p>
+                        
+                        <!-- Simulated interactive palette dots -->
+                        <div class="flex items-center space-x-3 mt-4">
+                            <button onclick="changeSimTheme('slate')" class="w-8 h-8 rounded-full bg-slate-700 border-2 border-white/50 hover:scale-110 transition-transform cursor-pointer" title="Neutral Gray"></button>
+                            <button onclick="changeSimTheme('amber')" class="w-8 h-8 rounded-full bg-amber-500 border-2 border-white/50 hover:scale-110 transition-transform cursor-pointer" title="Amber Accent"></button>
+                            <button onclick="changeSimTheme('rose')" class="w-8 h-8 rounded-full bg-rose-500 border-2 border-white/50 hover:scale-110 transition-transform cursor-pointer" title="Vibrant Red"></button>
+                            <button onclick="changeSimTheme('emerald')" class="w-8 h-8 rounded-full bg-emerald-500 border-2 border-white/50 hover:scale-110 transition-transform cursor-pointer" title="Emerald Green"></button>
+                        </div>
+
+                        <!-- Mini feedback text of simulation -->
+                        <p class="text-[10px] text-brand-300 mt-4 italic" id="sim-feedback">
+                            Active Accent: Default Studio Blue
+                        </p>
+                    </div>
+
+                    <a href="#contact" class="mt-6 w-full py-2.5 bg-white text-brand-950 font-bold rounded-xl text-center text-xs hover:bg-slate-50 transition-colors block">
+                        Get Custom Palette
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 md:py-28 bg-slate-50 dark:bg-brand-950/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+                <!-- Left Details Info -->
+                <div class="lg:col-span-5 flex flex-col justify-between reveal">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-200 text-slate-800 dark:bg-brand-900/60 dark:text-slate-300 text-xs font-semibold uppercase tracking-wider">
+                            <span>Get In Touch</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-slate-100">
+                            Let’s discuss your design project
+                        </h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                            I am actively seeking design internships (like IIMT) and commercial print poster assignments. Get in touch with me directly, and let's craft stellar visuals together.
+                        </p>
+
+                        <!-- Communication Info Cards -->
+                        <div class="space-y-4 pt-4">
+                            <!-- Location -->
+                            <div class="flex items-center space-x-4 p-4 rounded-2xl bg-white dark:bg-brand-900/10 border border-slate-200 dark:border-brand-900">
+                                <div class="w-10 h-10 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-wider">Location</h4>
+                                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Noida, Uttar Pradesh, India</p>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <a href="mailto:luckyvarshneyl.1025@gmail.com" class="flex items-center space-x-4 p-4 rounded-2xl bg-white dark:bg-brand-900/10 border border-slate-200 dark:border-brand-900 hover:border-brand-300 dark:hover:border-brand-800 transition-all block">
+                                <div class="w-10 h-10 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-wider">Email</h4>
+                                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">luckyvarshneyl.1025@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <!-- Phone -->
+                            <a href="tel:+918954865082" class="flex items-center space-x-4 p-4 rounded-2xl bg-white dark:bg-brand-900/10 border border-slate-200 dark:border-brand-900 hover:border-brand-300 dark:hover:border-brand-800 transition-all block">
+                                <div class="w-10 h-10 bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="phone" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-slate-400 dark:text-slate-500 uppercase font-extrabold tracking-wider">Phone</h4>
+                                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">+91 8954865082</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Digital verification marker -->
+                    <div class="mt-8 pt-6 border-t border-slate-200 dark:border-brand-900/60 hidden lg:block">
+                        <div class="flex items-center space-x-2 text-xs text-slate-400 dark:text-slate-500">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+                            <span>Verified Portfolio Profile | Last updated June 2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Contact Form Card -->
+                <div class="lg:col-span-7 reveal">
+                    <div class="bg-white dark:bg-brand-900/10 p-6 sm:p-10 rounded-3xl border border-slate-200 dark:border-brand-900 shadow-xl">
+                        <h3 class="text-2xl font-bold text-slate-950 dark:text-slate-100 mb-6">Send a direct inquiry</h3>
+                        
+                        <!-- Form -->
+                        <form id="contact-form" onsubmit="handleInquirySubmit(event)" class="space-y-5">
+                            <div>
+                                <label for="name" class="block text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 bg-slate-50 dark:bg-brand-950/40 border border-slate-200 dark:border-brand-900 rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all" placeholder="Enter your full name">
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Email Address</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 bg-slate-50 dark:bg-brand-950/40 border border-slate-200 dark:border-brand-900 rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all" placeholder="name@company.com">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5">Project Brief / Message</label>
+                                <textarea id="message" rows="4" required class="w-full px-4 py-3 bg-slate-50 dark:bg-brand-950/40 border border-slate-200 dark:border-brand-900 rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all" placeholder="Tell me about the poster, banner or design internship role..."></textarea>
+                            </div>
+
+                            <!-- Interactive status indicator inside forms -->
+                            <div id="form-status" class="hidden p-4 rounded-xl text-xs font-semibold"></div>
+
+                            <button type="submit" class="w-full inline-flex items-center justify-center space-x-2 py-3.5 px-6 rounded-xl font-bold text-white bg-brand-900 dark:bg-brand-600 hover:bg-brand-800 dark:hover:bg-brand-500 transition-colors shadow-lg cursor-pointer">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                <span>Submit Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-950 text-white py-12 border-t border-brand-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <!-- Brand Mark -->
+            <div class="flex items-center justify-center space-x-2">
+                <span class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center text-white font-extrabold text-base">
+                    LV
+                </span>
+                <span class="font-bold text-lg tracking-wider text-slate-300">Lucky Varshney</span>
+            </div>
+
+            <!-- Mini Nav Links -->
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-400 font-medium">
+                <a href="#home" class="hover:text-white transition-colors">Home</a>
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                <a href="#showcase" class="hover:text-white transition-colors">Showcase</a>
+                <a href="#services" class="hover:text-white transition-colors">Services</a>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-16 h-[1px] bg-brand-800 mx-auto"></div>
+
+            <!-- Credits -->
+            <div class="text-xs text-slate-500">
+                <p>© 2026 Lucky Varshney. All rights reserved.</p>
+                <p class="mt-1 font-semibold text-brand-400">Designed by Lucky Varshney</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- REALISTIC CANVAS DETAIL INSPECTION MODAL -->
+    <div id="project-modal" class="fixed inset-0 bg-brand-950/60 backdrop-blur-sm z- hidden items-center justify-center p-4" onclick="closeProjectModal(event)">
+        <div class="bg-white dark:bg-brand-900 rounded-3xl border border-slate-200 dark:border-brand-800 w-full max-w-lg p-6 sm:p-8 space-y-6 shadow-2xl relative" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closeProjectModal(null)" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-brand-950 rounded-xl transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Vector Status Header -->
+            <div class="flex items-center space-x-2 text-xs font-mono text-brand-600 dark:text-brand-400 uppercase tracking-widest">
+                <i data-lucide="info" class="w-4 h-4"></i>
+                <span>Pre-Press Canvas Metrics</span>
+            </div>
+
+            <div class="space-y-4">
+                <h3 id="modal-project-title" class="text-2xl font-bold text-slate-950 dark:text-slate-100">Project Canvas Specifications</h3>
+                <p id="modal-project-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Pre-Press mock guidelines check -->
+            <div class="bg-slate-50 dark:bg-brand-950 p-4 rounded-xl border border-dashed border-slate-200 dark:border-brand-800 space-y-2">
+                <h4 class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500">Print Quality Metrics</h4>
+                <div class="grid grid-cols-2 gap-2 text-xs font-mono text-slate-600 dark:text-slate-300">
+                    <div class="flex items-center space-x-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i>
+                        <span>Color Target: CMYK</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i>
+                        <span>Resolution: 300 DPI</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i>
+                        <span>Layout Bleed: +3mm</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i>
+                        <span>Fonts: Outlined/Curves</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Block -->
+            <div class="flex items-center justify-end space-x-3 pt-2">
+                <button onclick="closeProjectModal(null)" class="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-brand-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-brand-950 text-sm font-semibold transition-colors">
+                    Close Specs
+                </button>
+                <a href="#contact" onclick="closeProjectModal(null)" class="px-5 py-2.5 rounded-xl bg-brand-900 text-white dark:bg-brand-600 hover:bg-brand-800 dark:hover:bg-brand-500 text-sm font-bold transition-all shadow-md">
+                    Request Similar Design
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PORTFOLIO SCRIPTS -->
+    <script>
+        // Init Lucide Icons
+        window.onload = function() {
+            lucide.createIcons();
+            initAnimations();
+            initSkillsProgressObserver();
+            checkThemePreferences();
+        }
+
+        // Scroll to Skill Card Section
+        function scrollToSkillCard() {
+            const target = document.getElementById('skill-card-section');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Apply brief premium reveal glow highlight
+                target.classList.add('scale-[1.01]', 'transition-transform', 'duration-500');
+                setTimeout(() => {
+                    target.classList.remove('scale-[1.01]');
+                }, 600);
+            }
+        }
+
+        // Toggle Card 3D Flip
+        let cardFlipped = false;
+        function toggleCardFlip() {
+            const card = document.getElementById('designer-id-card');
+            if (!card) return;
+
+            cardFlipped = !cardFlipped;
+            if (cardFlipped) {
+                card.classList.add('flipped');
+                // Wait for flip rotation animation (800ms) to fully complete before initiating skill animations
+                setTimeout(() => {
+                    animateCardSkills();
+                }, 800);
+            } else {
+                card.classList.remove('flipped');
+                resetCardSkills();
+            }
+        }
+
+        function animateCardSkills() {
+            const progressBars = document.querySelectorAll('.card-skill-progress');
+            const counters = document.querySelectorAll('.card-skill-counter');
+
+            progressBars.forEach((bar, idx) => {
+                const counter = counters[idx];
+                const target = parseInt(counter.getAttribute('data-card-target'), 10);
+                
+                // Grow width
+                bar.style.width = target + '%';
+
+                // Count-Up Animation
+                let current = 0;
+                const duration = 1500; // Animation matching length
+                const stepTime = Math.max(Math.floor(duration / target), 12);
+                
+                const interval = setInterval(() => {
+                    current++;
+                    if (current <= target) {
+                        counter.textContent = current + '%';
+                    } else {
+                        counter.textContent = target + '%';
+                        clearInterval(interval);
+                    }
+                }, stepTime);
+                
+                // Save interval reference to safely reset
+                bar.dataset.activeInterval = interval;
+            });
+        }
+
+        function resetCardSkills() {
+            const progressBars = document.querySelectorAll('.card-skill-progress');
+            const counters = document.querySelectorAll('.card-skill-counter');
+
+            progressBars.forEach((bar, idx) => {
+                if (bar.dataset.activeInterval) {
+                    clearInterval(parseInt(bar.dataset.activeInterval, 10));
+                }
+                bar.style.width = '0%';
+                counters[idx].textContent = '0%';
+            });
+        }
+
+        // Dark/Light Theme Switching Engine
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleBtnMobile.addEventListener('click', toggleTheme);
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+
+        function checkThemePreferences() {
+            if (localStorage.getItem('color-theme') === 'dark' || 
+                (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            menuIcon.setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+            lucide.createIcons();
+        });
+
+        // Close mobile menu on clicking any navigation anchor
+        const mobileAnchors = mobileMenu.querySelectorAll('a');
+        mobileAnchors.forEach(anchor => {
+            anchor.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Reveal Entrance Animations (Intersection Observer)
+        function initAnimations() {
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Unobserve after executing animation for smoother flows
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // ULTRA-SMOOTH ANIMATED SKILL BARS & COUNT-UP LOGIC
+        function initSkillsProgressObserver() {
+            const skillsSection = document.getElementById('skills');
+            
+            const skillsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateSkillBars();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.25
+            });
+
+            if (skillsSection) {
+                skillsObserver.observe(skillsSection);
+            }
+        }
+
+        function animateSkillBars() {
+            const innerBars = document.querySelectorAll('.glowing-bar-inner');
+            const counterValues = document.querySelectorAll('.skill-counter-val');
+
+            innerBars.forEach((bar, idx) => {
+                const targetPercent = parseInt(bar.getAttribute('data-target'), 10);
+                
+                // 1. Animate Width with smooth CSS transition
+                setTimeout(() => {
+                    bar.style.width = targetPercent + '%';
+                }, idx * 100); // Slight stagger delay
+                
+                // 2. Count Up Numeric Values smoothly
+                const counterElement = counterValues[idx];
+                let currentVal = 0;
+                const duration = 1800; // 1.8 seconds duration matching CSS transition
+                const stepTime = Math.max(Math.floor(duration / targetPercent), 12);
+                
+                const interval = setInterval(() => {
+                    currentVal++;
+                    if (currentVal <= targetPercent) {
+                        counterElement.textContent = currentVal + '%';
+                    } else {
+                        counterElement.textContent = targetPercent + '%';
+                        clearInterval(interval);
+                    }
+                }, stepTime);
+            });
+        }
+
+        // Simulation palette accent changes
+        function changeSimTheme(colorAccent) {
+            const feedbackText = document.getElementById('sim-feedback');
+            let colorName = "Studio Blue";
+            
+            if (colorAccent === 'slate') colorName = "Minimal Graphite Gray";
+            else if (colorAccent === 'amber') colorName = "Vibrant Autumn Gold";
+            else if (colorAccent === 'rose') colorName = "Elegant Sunset Coral";
+            else if (colorAccent === 'emerald') colorName = "Modern Forest Emerald";
+
+            feedbackText.textContent = `Active Accent: ${colorName}`;
+            feedbackText.classList.add('animate-pulse');
+            
+            setTimeout(() => {
+                feedbackText.classList.remove('animate-pulse');
+            }, 600);
+        }
+
+        // Project Info Detail Modal Controls
+        function openProjectDetails(title, description) {
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-project-title');
+            const modalDesc = document.getElementById('modal-project-desc');
+
+            modalTitle.textContent = title;
+            modalDesc.textContent = description;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Lock scrolling
+        }
+
+        function closeProjectModal(event) {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; // Unlock scrolling
+        }
+
+        // Contact inquiry handle
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const statusBox = document.getElementById('form-status');
+
+            // Simulate form dispatching successfully
+            statusBox.className = "p-4 rounded-xl text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300";
+            statusBox.textContent = `Thank you, ${name}! Your design inquiry has been successfully queued. Lucky will reach out shortly to discuss details.`;
+            statusBox.classList.remove('hidden');
+
+            document.getElementById('contact-form').reset();
+
+            setTimeout(() => {
+                statusBox.classList.add('hidden');
+            }, 8000);
+        }
+
+        // Resume simulation trigger
+        function downloadResume() {
+            // Build a dynamic, beautiful resume printable card preview structure or file simulation
+            const printableWindow = window.open('resume.pdf', '_blank');
+            printableWindow.document.write(`
+                <html>
+                <head>
+                    <title>Resume - Lucky Varshney</title>
+                    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+                    <style>
+                        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+                        @media print {
+                            .no-print { display: none; }
+                        }
+                
+
+        /* SHOWCASE SECTION ANIMATIONS */
+        @keyframes showcaseFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+        @keyframes borderGlowMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .showcase-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.55s ease, border-color 0.55s ease;
+        }
+        .showcase-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.55rem;
+            background: linear-gradient(120deg, rgba(12,135,235,0), rgba(12,135,235,0.6), rgba(129,140,248,0.6), rgba(12,135,235,0));
+            background-size: 250% 250%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.45s ease;
+            animation: borderGlowMove 4s ease infinite;
+        }
+        .showcase-card:hover {
+            transform: translateY(-10px) scale(1.015);
+            box-shadow: 0 25px 70px rgba(2, 6, 23, 0.16);
+        }
+        .dark .showcase-card:hover {
+            box-shadow: 0 25px 70px rgba(12, 135, 235, 0.16);
+        }
+        .showcase-card:hover::before {
+            opacity: 1;
+        }
+        .showcase-card:hover .showcase-art {
+            transform: scale(1.06);
+        }
+        .showcase-card:hover .showcase-chip {
+            transform: translateY(-3px);
+        }
+        .showcase-floating-badge {
+            animation: showcaseFloat 5s ease-in-out infinite;
+        }
+    </style>
+                </head>
+                <body class="bg-slate-100 text-slate-800 p-8">
+                    <div class="no-print max-w-2xl mx-auto mb-6 flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Printable Curriculum Vitae</span>
+                        <button onclick="window.print()" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold text-sm hover:bg-blue-700 transition-colors">Print or Save PDF</button>
+                    </div>
+                    <div class="max-w-2xl mx-auto bg-white p-10 rounded-2xl shadow-md border border-slate-200">
+                        <!-- Header -->
+                        <div class="border-b-2 border-slate-900 pb-6">
+                            <h1 class="text-3xl font-extrabold text-slate-900">LUCKY VARSHNEY</h1>
+                            <p class="text-sm font-semibold text-blue-600 mt-1 uppercase tracking-widest">Graphic Designer & Creative Editor</p>
+                            <div class="grid grid-cols-2 gap-2 mt-4 text-xs text-slate-500">
+                                <p>Email: luckyvarshneyl.1025@gmail.com</p>
+                                <p>Phone: +91 8954865082</p>
+                                <p>Location: Noida, Uttar Pradesh</p>
+                                <p>Portfolio: luckyvarshney.design</p>
+                            </div>
+                        </div>
+
+                        <!-- Objective -->
+                        <div class="my-6">
+                            <h2 class="text-sm font-extrabold text-slate-900 uppercase tracking-widest border-b pb-1 mb-2">Professional Summary</h2>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Passionate and structurally focused Fresher Graphic Designer equipped with strong layout balance, print grid setup, and real production experience at active design printers. Highly skilled in CorelDRAW, Canva, and photoshop compositing. Eager to contribute directly to design internships (including colleges like IIMT) and business poster solutions.
+                            </p>
+                        </div>
+
+                        <!-- Experience -->
+                        <div class="my-6">
+                            <h2 class="text-sm font-extrabold text-slate-900 uppercase tracking-widest border-b pb-1 mb-2">Experience</h2>
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xs font-bold text-slate-800">Graphic Design Intern | Krishna Prints, Surir</h3>
+                                    <span class="text-xs font-semibold text-slate-500">March 2026 - Present</span>
+                                </div>
+                                <ul class="list-disc pl-4 mt-2 space-y-1 text-[11px] text-slate-600">
+                                    <li>Crafted large scale physical flex layouts, posters, banners, and offset visiting cards.</li>
+                                    <li>Modified and adjusted designs directly matching incoming customer layout requirements.</li>
+                                    <li>Set color spacing priorities correctly in pre-press curves and formatted raw files.</li>
+                                    <li>Maintained modern layout styling constraints for corporate social media banner slots.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Technical Skills -->
+                        <div class="my-6">
+                            <h2 class="text-sm font-extrabold text-slate-900 uppercase tracking-widest border-b pb-1 mb-2">Technical Skills & Software</h2>
+                            <div class="grid grid-cols-2 gap-y-1.5 text-xs text-slate-600">
+                                <p><strong>CorelDRAW:</strong> Advanced Pre-press Vector Grid</p>
+                                <p><strong>Canva Suite:</strong> Template styling & Fast mockups</p>
+                                <p><strong>Photoshop:</strong> Layer mask edits, backgrounds</p>
+                                <p><strong>Filmora:</strong> Creative Reels & Video Editing</p>
+                                <p><strong>Print Media:</strong> Bleed alignments, CMYK optimization</p>
+                                <p><strong>Soft Skills:</strong> Fast learning, active active feedback</p>
+                            </div>
+                        </div>
+
+                        <!-- Education -->
+                        <div class="my-6">
+                            <h2 class="text-sm font-extrabold text-slate-900 uppercase tracking-widest border-b pb-1 mb-2">Academic Profile</h2>
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xs font-bold text-slate-800">Undergraduate Academic Pursuits</h3>
+                                    <span class="text-xs font-semibold text-slate-500">Noida, Uttar Pradesh</span>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mt-1">Interests focused in Graphic Design, Print Media alignment, and Vector UI Arts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            printableWindow.document.close();
+        }
+
+        // Active Navbar background shift on scroll
+        const navBar = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navBar.classList.add('shadow-md', 'py-2');
+                navBar.classList.remove('py-4');
+            } else {
+                navBar.classList.remove('shadow-md', 'py-2');
+                navBar.classList.add('py-4');
+            }
+        });
+    </script>
+</body>
+</html>
