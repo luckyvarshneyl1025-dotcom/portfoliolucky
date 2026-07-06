@@ -22,8 +22,75 @@
     .orange-btn{background:#f59e0b;color:#050505;box-shadow:0 10px 30px rgba(245,158,11,.18)}.orange-btn:hover{background:#ffb21c;transform:translateY(-3px);box-shadow:0 18px 42px rgba(245,158,11,.32)}.white-outline{border:1px solid rgba(255,255,255,.22)}.white-outline:hover{border-color:rgba(245,158,11,.65);box-shadow:0 14px 40px rgba(245,158,11,.12);transform:translateY(-3px)}
     .portfolio-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.big-panel{grid-column:span 7}.small-panel{grid-column:span 5}.full-panel{grid-column:span 12}
     .skill-fill{width:0;transition:width 1.6s cubic-bezier(.2,.9,.2,1);box-shadow:0 0 18px rgba(245,158,11,.45)}.skill-count{display:inline-block;min-width:42px;text-align:right;color:#f59e0b;text-shadow:0 0 16px rgba(245,158,11,.35)}.section-card{transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s ease,border-color .45s ease}.section-card:hover{transform:translateY(-6px);border-color:rgba(245,158,11,.38);box-shadow:0 28px 90px rgba(0,0,0,.55),0 0 42px rgba(245,158,11,.08)}.profile-slide,.showcase-slide{position:absolute;inset:0;opacity:0;transform:scale(1.04) translateY(14px);filter:blur(10px);transition:opacity .9s ease,transform 1.15s cubic-bezier(.16,1,.3,1),filter .9s ease}.profile-slide.active,.showcase-slide.active{opacity:1;transform:scale(1) translateY(0);filter:blur(0);z-index:2}.showcase-media{height:min(62vw,560px);min-height:320px;aspect-ratio:16/9}.showcase-slide{display:grid;place-items:center;background:radial-gradient(circle at center,rgba(245,158,11,.08),rgba(0,0,0,.95))}.showcase-slide img{width:100%;height:100%;object-fit:contain;padding:14px;animation:softZoom 5s ease-in-out infinite alternate}.profile-slide{object-fit:cover}.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}.reveal.show{opacity:1;transform:translateY(0)}@keyframes softZoom{from{transform:scale(.985)}to{transform:scale(1.015)}}.modal-backdrop{background:rgba(0,0,0,.75);backdrop-filter:blur(10px)}
-    .hero-name-static{animation:heroNameIntro 1.05s cubic-bezier(.16,1,.3,1) both;will-change:transform,opacity}.hero-title-static{animation:heroTextIntro .9s cubic-bezier(.16,1,.3,1) both}@keyframes heroNameIntro{from{opacity:0;transform:translateY(18px) rotate(-3deg) scale(.96)}to{opacity:1;transform:translateY(0) rotate(0) scale(1)}}@keyframes heroTextIntro{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    /* Hero intro animation: runs once, then text stays permanently visible (GitHub Pages safe) */
+    .hero-title-static{animation:heroTextIntro .9s cubic-bezier(.16,1,.3,1) both}
+    .hero-name-intro{opacity:1!important;transform:translateY(0) rotate(0) scale(1)!important;animation:heroNameIntro 1.05s cubic-bezier(.16,1,.3,1) both;will-change:transform,opacity}
+    .hero-name-stable{opacity:1!important;transform:none!important;animation:none!important;filter:none!important;visibility:visible!important}
+    @keyframes heroNameIntro{0%{opacity:0;transform:translateY(18px) rotate(-3deg) scale(.96)}100%{opacity:1;transform:translateY(0) rotate(0) scale(1)}}@keyframes heroTextIntro{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:900px){.portfolio-grid{display:block}.big-panel,.small-panel,.full-panel{margin-bottom:18px}.headline{line-height:.9}.scribble{font-size:34px}}
+
+
+    /* MOBILE FRIENDLY UPGRADE */
+    @media (max-width: 768px){
+      body{font-size:15px;}
+      nav .max-w-7xl{padding-top:12px;padding-bottom:12px;}
+      nav a span.font-black{font-size:15px;max-width:155px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      #mobileMenu{max-height:calc(100vh - 72px);overflow:auto;}
+      #home{padding-top:92px;padding-bottom:46px;min-height:auto;}
+      #home .grid{gap:28px;min-height:auto;}
+      #home p.text-accent{font-size:10px;letter-spacing:.24em;margin-bottom:18px;}
+      #home h1.headline{font-size:clamp(66px,22vw,104px)!important;line-height:.86;}
+      #home .script{font-size:clamp(42px,13vw,62px)!important;margin-top:-12px;margin-left:4px;}
+      #home p.mt-8{margin-top:22px;font-size:15px;line-height:1.7;}
+      #home .mt-8.flex{gap:12px;}
+      #home .mt-8.flex a,#home .mt-8.flex button{width:100%;text-align:center;justify-content:center;padding:14px 18px;font-size:14px;}
+      .section-card{border-radius:22px!important;padding:22px!important;}
+      .section-card.reveal.rounded-\[32px\]{padding:14px!important;}
+      .profile-slide{object-fit:cover;object-position:center top;}
+      .section-card .relative.h-\[480px\]{height:clamp(330px,84vw,430px)!important;border-radius:18px!important;}
+      .hero-title-static{font-size:48px!important;line-height:.9;}
+      .hero-name-static{font-size:42px!important;line-height:1.05;}
+      main.paper-bg{padding-top:32px;padding-bottom:42px;}
+      .portfolio-grid{display:block!important;}
+      .big-panel,.small-panel,.full-panel{margin-bottom:18px!important;min-height:auto!important;}
+      .headline{font-size:clamp(48px,15vw,78px)!important;line-height:.9;}
+      .script{font-size:clamp(34px,10vw,48px)!important;}
+      #about .grid.sm\:grid-cols-3{grid-template-columns:1fr!important;}
+      #projects .grid.sm\:grid-cols-2{grid-template-columns:1fr!important;}
+      #showcase .mt-8.grid{display:block!important;}
+      .showcase-media{height:auto!important;min-height:0!important;aspect-ratio:16/10;margin-bottom:16px;}
+      .showcase-slide img{padding:10px;}
+      #showcase .grid.grid-cols-2{grid-template-columns:1fr 1fr!important;gap:12px;}
+      #showcase .white-outline.rounded-2xl{padding:15px!important;}
+      #contact h2.headline{font-size:clamp(70px,22vw,110px)!important;line-height:.82;}
+      #contact .script{margin-top:-18px!important;}
+      #contact .mt-8.flex a,#contact .mt-8.flex button{width:100%;justify-content:center;padding:14px 16px;font-size:13px;overflow-wrap:anywhere;}
+      .scribble{font-size:28px!important;opacity:.7;}
+    }
+
+    @media (max-width: 420px){
+      .max-w-7xl{padding-left:14px!important;padding-right:14px!important;}
+      #home h1.headline{font-size:62px!important;}
+      #home .script{font-size:38px!important;}
+      .hero-title-static{font-size:40px!important;}
+      .hero-name-static{font-size:36px!important;}
+      .section-card{padding:18px!important;}
+      .section-card.reveal.rounded-\[32px\]{padding:12px!important;}
+      .section-card .relative.h-\[480px\]{height:320px!important;}
+      .headline{font-size:48px!important;}
+      .script{font-size:34px!important;}
+      #showcase .grid.grid-cols-2{grid-template-columns:1fr!important;}
+      .skill .flex{gap:8px;}
+      .skill .flex span:first-child{font-size:13px;}
+      .skill-count{min-width:36px;font-size:13px;}
+      .orange-btn,.white-outline{min-height:44px;}
+      footer{font-size:12px;padding:24px 10px;}
+    }
+
+    @media (hover:none){
+      .section-card:hover,.orange-btn:hover,.white-outline:hover{transform:none;}
+    }
+
   </style>
 </head>
 <body>
@@ -36,7 +103,7 @@
       <div class="flex items-center gap-3"><button onclick="downloadResume()" class="hidden sm:inline-flex orange-btn px-5 py-2.5 rounded-full font-black text-sm gap-2 items-center"><i data-lucide="download" class="w-4 h-4"></i> Resume</button><button id="mobileBtn" class="md:hidden p-2 white-outline rounded-xl"><i data-lucide="menu"></i></button></div>
     </div>
     <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-black/90">
-      <a href="#about" class="block p-3 rounded-xl white-outline">About</a><a href="#skills" class="block p-3 rounded-xl white-outline">Skills</a><a href="#experience" class="block p-3 rounded-xl white-outline">Experience</a><a href="#projects" class="block p-3 rounded-xl white-outline">Projects</a><a href="#showcase" class="block p-3 rounded-xl white-outline">Showcase</a><button onclick="downloadResume()" class="w-full p-3 rounded-xl orange-btn font-black">Download Resume</button>
+      <a href="#about" class="block p-3 rounded-xl white-outline">About</a><a href="#skills" class="block p-3 rounded-xl white-outline">Skills</a><a href="#experience" class="block p-3 rounded-xl white-outline">Experience</a><a href="#projects" class="block p-3 rounded-xl white-outline">Projects</a><a href="#showcase" class="block p-3 rounded-xl white-outline">Showcase</a><a href="#contact" class="block p-3 rounded-xl white-outline">Contact</a><button onclick="downloadResume()" class="w-full p-3 rounded-xl orange-btn font-black">Download Resume</button>
     </div>
   </nav>
 
@@ -59,7 +126,7 @@
             <img src="images/profile/photo3.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
             <img src="images/profile/photo4.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6"><h2 class="headline text-6xl hero-title-static">HELLO I’AM</h2><p class="script text-5xl -mt-3 hero-name-static">Lucky Varshney</p><p class="text-white/70 mt-3">Graphic Designer Intern • Krishna Prints, Surir</p></div>
+            <div class="absolute bottom-6 left-6 right-6"><h2 class="headline text-6xl hero-title-static">HELLO I’AM</h2><p id="heroName" class="script text-5xl -mt-3 hero-name-intro hero-name-stable">Lucky Varshney</p><p class="text-white/70 mt-3">Graphic Designer Intern • Krishna Prints, Surir</p></div>
           </div>
         </div>
       </div>
@@ -116,6 +183,7 @@
   <script>
     function icons(){ if(window.lucide) lucide.createIcons(); }
     document.getElementById('mobileBtn')?.addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+    document.querySelectorAll('#mobileMenu a, #mobileMenu button').forEach(item=>item.addEventListener('click',()=>document.getElementById('mobileMenu')?.classList.add('hidden')));
     function downloadResume(){ window.open('resume.pdf','_blank'); }
     let skillsAnimated=false;
     function animateNumber(el,target,duration=1600){
@@ -147,7 +215,20 @@
     function closeProjectModal(event){ if(event && event.target.id!=='projectModal') return; document.getElementById('projectModal').classList.add('hidden'); }
     function scrollToSkillCard(){ document.getElementById('skills')?.scrollIntoView({behavior:'smooth'}); }
     function toggleCardFlip(){}
-    window.addEventListener('load',()=>{ icons(); animateSkills(); initReveal(); autoFitShowcase(); setInterval(nextShowcase,5000); });
+    function lockHeroName(){
+      const name=document.getElementById('heroName');
+      if(!name) return;
+      name.style.opacity='1';
+      name.style.visibility='visible';
+      name.style.transform='none';
+      setTimeout(()=>{
+        name.classList.remove('hero-name-intro');
+        name.classList.add('hero-name-stable');
+        name.style.animation='none';
+      },1200);
+    }
+    document.addEventListener('DOMContentLoaded', lockHeroName);
+    window.addEventListener('load',()=>{ icons(); animateSkills(); initReveal(); autoFitShowcase(); lockHeroName(); setInterval(nextShowcase,5000); });
   </script>
 </body>
 </html>
