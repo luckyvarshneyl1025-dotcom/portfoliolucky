@@ -26,6 +26,12 @@
     .hero-title-static{animation:heroTextIntro .9s cubic-bezier(.16,1,.3,1) both}
     .hero-name-intro{opacity:1!important;transform:translateY(0) rotate(0) scale(1)!important;animation:heroNameIntro 1.05s cubic-bezier(.16,1,.3,1) both;will-change:transform,opacity}
     .hero-name-stable{opacity:1!important;transform:none!important;animation:none!important;filter:none!important;visibility:visible!important}
+
+    .profile-slide{z-index:1}
+    .profile-slide.active{z-index:2}
+    .hero-photo-gradient{z-index:10;pointer-events:none}
+    .hero-photo-text{z-index:20;pointer-events:none;opacity:1!important;visibility:visible!important}
+    .hero-photo-text *{opacity:1!important;visibility:visible!important}
     @keyframes heroNameIntro{0%{opacity:0;transform:translateY(18px) rotate(-3deg) scale(.96)}100%{opacity:1;transform:translateY(0) rotate(0) scale(1)}}@keyframes heroTextIntro{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:900px){.portfolio-grid{display:block}.big-panel,.small-panel,.full-panel{margin-bottom:18px}.headline{line-height:.9}.scribble{font-size:34px}}
 
@@ -125,8 +131,8 @@
             <img src="images/profile/photo2.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
             <img src="images/profile/photo3.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
             <img src="images/profile/photo4.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6"><h2 class="headline text-6xl hero-title-static">HELLO I’AM</h2><p id="heroName" class="script text-5xl -mt-3 hero-name-intro hero-name-stable">Lucky Varshney</p><p class="text-white/70 mt-3">Graphic Designer Intern • Krishna Prints, Surir</p></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent hero-photo-gradient"></div>
+            <div class="absolute bottom-6 left-6 right-6 hero-photo-text"><h2 class="headline text-6xl hero-title-static">HELLO I’AM</h2><p id="heroName" class="script text-5xl -mt-3 hero-name-intro hero-name-stable">Lucky Varshney</p><p class="text-white/70 mt-3">Graphic Designer Intern • Krishna Prints, Surir</p></div>
           </div>
         </div>
       </div>
