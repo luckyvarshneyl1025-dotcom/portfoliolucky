@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucky Varshney | Graphic Design Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;800;900&family=Yellowtail&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { display:['Bebas Neue','sans-serif'], script:['Yellowtail','cursive'], sans:['Inter','sans-serif'] }, colors:{ ink:'#050505', paper:'#0b0b0b', accent:'#f59e0b', accent2:'#ffb21c' }, boxShadow:{ glow:'0 0 45px rgba(245,158,11,.25)' } } } }
+  </script>
+  <style>
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{font-family:Inter,sans-serif;background:#050505;color:#fff;overflow-x:hidden} *{transition:background-color .28s ease,color .28s ease,border-color .28s ease,box-shadow .28s ease,transform .28s ease}
+    .paper-bg{background:radial-gradient(circle at 18% 20%,rgba(255,255,255,.09),transparent 22%),radial-gradient(circle at 82% 12%,rgba(245,158,11,.08),transparent 24%),linear-gradient(135deg,#050505,#121212 45%,#050505);position:relative}
+    .paper-bg:before{content:"";position:absolute;inset:0;opacity:.18;pointer-events:none;background-image:linear-gradient(115deg,transparent 0 12%,rgba(255,255,255,.12) 13%,transparent 14% 34%,rgba(255,255,255,.08) 35%,transparent 36% 100%),repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 1px,transparent 1px 9px)}
+    .headline{font-family:'Bebas Neue',sans-serif;letter-spacing:-.03em;line-height:.85}.script{font-family:Yellowtail,cursive;color:#f59e0b;font-weight:400}.stroke{text-shadow:3px 3px 0 #000, -1px -1px 0 rgba(255,255,255,.12)}
+    .section-card{background:rgba(12,12,12,.78);border:1px solid rgba(255,255,255,.12);box-shadow:0 22px 80px rgba(0,0,0,.45);backdrop-filter:blur(12px)}
+    .scribble{position:absolute;color:#f59e0b;font-size:46px;font-weight:900;line-height:1;opacity:.95;user-select:none}.navglass{background:rgba(5,5,5,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.12)}
+    .orange-btn{background:#f59e0b;color:#050505;box-shadow:0 10px 30px rgba(245,158,11,.18)}.orange-btn:hover{background:#ffb21c;transform:translateY(-3px);box-shadow:0 18px 42px rgba(245,158,11,.32)}.white-outline{border:1px solid rgba(255,255,255,.22)}.white-outline:hover{border-color:rgba(245,158,11,.65);box-shadow:0 14px 40px rgba(245,158,11,.12);transform:translateY(-3px)}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.big-panel{grid-column:span 7}.small-panel{grid-column:span 5}.full-panel{grid-column:span 12}
+    .skill-fill{width:0;transition:width 1.6s cubic-bezier(.2,.9,.2,1);box-shadow:0 0 18px rgba(245,158,11,.45)}.skill-count{display:inline-block;min-width:42px;text-align:right;color:#f59e0b;text-shadow:0 0 16px rgba(245,158,11,.35)}.section-card{transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s ease,border-color .45s ease}.section-card:hover{transform:translateY(-6px);border-color:rgba(245,158,11,.38);box-shadow:0 28px 90px rgba(0,0,0,.55),0 0 42px rgba(245,158,11,.08)}.profile-slide,.showcase-slide{position:absolute;inset:0;opacity:0;transform:scale(1.04) translateY(14px);filter:blur(10px);transition:opacity .9s ease,transform 1.15s cubic-bezier(.16,1,.3,1),filter .9s ease}.profile-slide.active,.showcase-slide.active{opacity:1;transform:scale(1) translateY(0);filter:blur(0);z-index:2}.showcase-media{height:min(62vw,560px);min-height:320px;aspect-ratio:16/9}.showcase-slide{display:grid;place-items:center;background:radial-gradient(circle at center,rgba(245,158,11,.08),rgba(0,0,0,.95))}.showcase-slide img{width:100%;height:100%;object-fit:contain;padding:14px;animation:softZoom 5s ease-in-out infinite alternate}.profile-slide{object-fit:cover}.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}.reveal.show{opacity:1;transform:translateY(0)}@keyframes softZoom{from{transform:scale(.985)}to{transform:scale(1.015)}}.modal-backdrop{background:rgba(0,0,0,.75);backdrop-filter:blur(10px)}
+    /* Hero intro animation: runs once, then text stays permanently visible (GitHub Pages safe) */
+    .hero-title-static{animation:heroTextIntro .9s cubic-bezier(.16,1,.3,1) both}
+    .hero-name-intro{opacity:1!important;transform:translateY(0) rotate(0) scale(1)!important;animation:heroNameIntro 1.05s cubic-bezier(.16,1,.3,1) both;will-change:transform,opacity}
+    .hero-name-stable{opacity:1!important;transform:none!important;animation:none!important;filter:none!important;visibility:visible!important}
+
+    .profile-slide{z-index:1}
+    .profile-slide.active{z-index:2}
+    .hero-photo-gradient{z-index:10;pointer-events:none}
+    .hero-photo-text{z-index:20;pointer-events:none;opacity:1!important;visibility:visible!important}
+    .hero-photo-text *{opacity:1!important;visibility:visible!important}
+    @keyframes heroNameIntro{0%{opacity:0;transform:translateY(18px) rotate(-3deg) scale(.96)}100%{opacity:1;transform:translateY(0) rotate(0) scale(1)}}@keyframes heroTextIntro{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){.portfolio-grid{display:block}.big-panel,.small-panel,.full-panel{margin-bottom:18px}.headline{line-height:.9}.scribble{font-size:34px}}
+
+
+    /* MOBILE FRIENDLY UPGRADE */
+    @media (max-width: 768px){
+      body{font-size:15px;}
+      nav .max-w-7xl{padding-top:12px;padding-bottom:12px;}
+      nav a span.font-black{font-size:15px;max-width:155px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      #mobileMenu{max-height:calc(100vh - 72px);overflow:auto;}
+      #home{padding-top:92px;padding-bottom:46px;min-height:auto;}
+      #home .grid{gap:28px;min-height:auto;}
+      #home p.text-accent{font-size:10px;letter-spacing:.24em;margin-bottom:18px;}
+      #home h1.headline{font-size:clamp(66px,22vw,104px)!important;line-height:.86;}
+      #home .script{font-size:clamp(42px,13vw,62px)!important;margin-top:-12px;margin-left:4px;}
+      #home p.mt-8{margin-top:22px;font-size:15px;line-height:1.7;}
+      #home .mt-8.flex{gap:12px;}
+      #home .mt-8.flex a,#home .mt-8.flex button{width:100%;text-align:center;justify-content:center;padding:14px 18px;font-size:14px;}
+      .section-card{border-radius:22px!important;padding:22px!important;}
+      .section-card.reveal.rounded-\[32px\]{padding:14px!important;}
+      .profile-slide{object-fit:cover;object-position:center top;}
+      .section-card .relative.h-\[480px\]{height:clamp(330px,84vw,430px)!important;border-radius:18px!important;}
+      .hero-title-static{font-size:48px!important;line-height:.9;}
+      .hero-name-static{font-size:42px!important;line-height:1.05;}
+      main.paper-bg{padding-top:32px;padding-bottom:42px;}
+      .portfolio-grid{display:block!important;}
+      .big-panel,.small-panel,.full-panel{margin-bottom:18px!important;min-height:auto!important;}
+      .headline{font-size:clamp(48px,15vw,78px)!important;line-height:.9;}
+      .script{font-size:clamp(34px,10vw,48px)!important;}
+      #about .grid.sm\:grid-cols-3{grid-template-columns:1fr!important;}
+      #projects .grid.sm\:grid-cols-2{grid-template-columns:1fr!important;}
+      #showcase .mt-8.grid{display:block!important;}
+      .showcase-media{height:auto!important;min-height:0!important;aspect-ratio:16/10;margin-bottom:16px;}
+      .showcase-slide img{padding:10px;}
+      #showcase .grid.grid-cols-2{grid-template-columns:1fr 1fr!important;gap:12px;}
+      #showcase .white-outline.rounded-2xl{padding:15px!important;}
+      #contact h2.headline{font-size:clamp(70px,22vw,110px)!important;line-height:.82;}
+      #contact .script{margin-top:-18px!important;}
+      #contact .mt-8.flex a,#contact .mt-8.flex button{width:100%;justify-content:center;padding:14px 16px;font-size:13px;overflow-wrap:anywhere;}
+      .scribble{font-size:28px!important;opacity:.7;}
+    }
+
+    @media (max-width: 420px){
+      .max-w-7xl{padding-left:14px!important;padding-right:14px!important;}
+      #home h1.headline{font-size:62px!important;}
+      #home .script{font-size:38px!important;}
+      .hero-title-static{font-size:40px!important;}
+      .hero-name-static{font-size:36px!important;}
+      .section-card{padding:18px!important;}
+      .section-card.reveal.rounded-\[32px\]{padding:12px!important;}
+      .section-card .relative.h-\[480px\]{height:320px!important;}
+      .headline{font-size:48px!important;}
+      .script{font-size:34px!important;}
+      #showcase .grid.grid-cols-2{grid-template-columns:1fr!important;}
+      .skill .flex{gap:8px;}
+      .skill .flex span:first-child{font-size:13px;}
+      .skill-count{min-width:36px;font-size:13px;}
+      .orange-btn,.white-outline{min-height:44px;}
+      footer{font-size:12px;padding:24px 10px;}
+    }
+
+    @media (hover:none){
+      .section-card:hover,.orange-btn:hover,.white-outline:hover{transform:none;}
+    }
+
+  
+
+    /* ===== Floating Cards Auto Showcase Slider ===== */
+    .floating-showcase-wrap{
+      position:relative;
+      margin-top:34px;
+      overflow:hidden;
+      border-radius:28px;
+    }
+    .floating-showcase-wrap::before,
+    .floating-showcase-wrap::after{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:110px;
+      z-index:4;
+      pointer-events:none;
+    }
+    .floating-showcase-wrap::before{
+      left:0;
+      background:linear-gradient(90deg,#050505,transparent);
+    }
+    .floating-showcase-wrap::after{
+      right:0;
+      background:linear-gradient(270deg,#050505,transparent);
+    }
+    .floating-track{
+      display:flex;
+      gap:20px;
+      width:max-content;
+      animation:floatingSlide 28s linear infinite;
+      padding:18px 6px 26px;
+    }
+    .floating-showcase-wrap:hover .floating-track{
+      animation-play-state:paused;
+    }
+    .floating-card{
+      width:310px;
+      min-height:250px;
+      border-radius:26px;
+      overflow:hidden;
+      background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 22px 55px rgba(0,0,0,.36);
+      position:relative;
+      transform:translateY(0) rotate(.001deg);
+    }
+    .floating-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      border-color:rgba(245,158,11,.52);
+      box-shadow:0 34px 80px rgba(0,0,0,.52),0 0 36px rgba(245,158,11,.14);
+    }
+    .floating-card-img{
+      width:100%;
+      height:250px;
+      object-fit:cover; /* image auto adjust: crop neatly without stretch */
+      object-position:center;
+      display:block;
+      background:#111;
+    }
+    .floating-card-body{
+      padding:20px;
+      position:relative;
+      z-index:2;
+    }
+    .floating-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border:1px solid rgba(245,158,11,.42);
+      color:#f59e0b;
+      background:rgba(245,158,11,.08);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .floating-card h3{
+      margin-top:14px;
+      font-size:22px;
+      line-height:1.1;
+      font-weight:900;
+    }
+    .floating-card p{
+      margin-top:10px;
+      color:rgba(255,255,255,.62);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .floating-card::after{
+      content:"";
+      position:absolute;
+      inset:auto -35px -55px auto;
+      width:150px;
+      height:150px;
+      border-radius:999px;
+      background:rgba(245,158,11,.13);
+      filter:blur(18px);
+    }
+    @keyframes floatingSlide{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
+    }
+    @media(max-width:768px){
+      .floating-showcase-wrap::before,
+      .floating-showcase-wrap::after{width:42px}
+      .floating-track{gap:14px;animation-duration:24s}
+      .floating-card{width:250px;min-height:210px;border-radius:22px}
+      .floating-card-img{height:210px}
+      .floating-card-body{padding:16px}
+      .floating-card h3{font-size:19px}
+      .floating-card p{font-size:13px}
+    }
+
+</style>
+</head>
+<body>
+  <nav class="fixed top-0 left-0 right-0 z-50 navglass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3"><span class="w-10 h-10 rounded-full orange-btn grid place-items-center font-black">LV</span><span class="font-black tracking-tight">Lucky Varshney</span></a>
+      <div class="hidden md:flex items-center gap-7 text-xs uppercase tracking-[.2em] font-black text-white/70">
+        <a href="#about" class="hover:text-accent">About</a><a href="#skills" class="hover:text-accent">Skills</a><a href="#experience" class="hover:text-accent">Experience</a><a href="#projects" class="hover:text-accent">Projects</a><a href="#showcase" class="hover:text-accent">Showcase</a><a href="#contact" class="hover:text-accent">Contact</a>
+      </div>
+      <div class="flex items-center gap-3"><button onclick="downloadResume()" class="hidden sm:inline-flex orange-btn px-5 py-2.5 rounded-full font-black text-sm gap-2 items-center"><i data-lucide="download" class="w-4 h-4"></i> Resume</button><button id="mobileBtn" class="md:hidden p-2 white-outline rounded-xl"><i data-lucide="menu"></i></button></div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-black/90">
+      <a href="#about" class="block p-3 rounded-xl white-outline">About</a><a href="#skills" class="block p-3 rounded-xl white-outline">Skills</a><a href="#experience" class="block p-3 rounded-xl white-outline">Experience</a><a href="#projects" class="block p-3 rounded-xl white-outline">Projects</a><a href="#showcase" class="block p-3 rounded-xl white-outline">Showcase</a><a href="#contact" class="block p-3 rounded-xl white-outline">Contact</a><button onclick="downloadResume()" class="w-full p-3 rounded-xl orange-btn font-black">Download Resume</button>
+    </div>
+  </nav>
+
+  <section id="home" class="paper-bg min-h-screen pt-28 pb-16 relative overflow-hidden">
+    <span class="scribble top-24 right-12">~</span><span class="scribble bottom-20 left-8">⌁</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-10 items-center min-h-[78vh]">
+        <div>
+          <p class="text-accent text-xs font-black tracking-[.35em] uppercase mb-6">Graphic Designer Portfolio</p>
+          <h1 class="headline stroke text-[82px] sm:text-[130px] lg:text-[160px]">PORTFOLIO</h1>
+          <div class="script text-5xl sm:text-7xl -mt-5 ml-4 rotate-[-5deg]">Graphic Design</div>
+          <p class="mt-8 max-w-xl text-white/70 leading-relaxed">Hi, I’m Lucky Varshney — a passionate fresher designer creating posters, banners, print-ready artwork, social media creatives, and clean visual layouts using CorelDRAW, Canva, Photoshop and video editing tools.</p>
+          <div class="mt-8 flex flex-wrap gap-4"><a href="#showcase" class="orange-btn px-7 py-4 rounded-full font-black">View Showcase</a><button onclick="downloadResume()" class="white-outline px-7 py-4 rounded-full font-black">Resume</button><a href="#contact" class="white-outline px-7 py-4 rounded-full font-black">Contact</a></div>
+        </div>
+        <div class="section-card reveal rounded-[32px] p-5 relative overflow-hidden">
+          <span class="absolute top-4 left-4 text-accent font-black text-xs uppercase tracking-[.25em]">Open To Work</span>
+          <div class="relative h-[480px] rounded-[24px] overflow-hidden bg-black">
+            <img src="images/profile/photo1.jpg" class="profile-slide active w-full h-full object-cover" alt="Profile photo">
+            <img src="images/profile/photo2.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
+            <img src="images/profile/photo3.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
+            <img src="images/profile/photo4.jpg" class="profile-slide w-full h-full object-cover" alt="Profile photo">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent hero-photo-gradient"></div>
+            <div class="absolute bottom-6 left-6 right-6 hero-photo-text"><h2 class="headline text-6xl hero-title-static">HELLO I’AM</h2><p id="heroName" class="script text-5xl -mt-3 hero-name-intro hero-name-stable">Lucky Varshney</p><p class="text-white/70 mt-3">Graphic Designer Intern • Krishna Prints, Surir</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="paper-bg py-16 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 portfolio-grid">
+      <section id="about" class="section-card reveal rounded-[28px] p-8 big-panel min-h-[390px] relative overflow-hidden">
+        <span class="scribble top-4 right-8">⌁</span><p class="text-accent text-xs font-black tracking-[.3em] uppercase">About Me</p><h2 class="headline text-7xl sm:text-8xl mt-4">HELLO I’AM</h2><p class="script text-5xl -mt-3">Graphic Designer</p><p class="mt-6 text-white/70 leading-relaxed max-w-2xl">A focused and adaptive fresher graphic designer with hands-on production experience at Krishna Prints, Surir. I work on customer design requests, print layouts, social creatives, and commercial artwork with practical design sense.</p>
+        <div class="grid sm:grid-cols-3 gap-4 mt-8"><div class="white-outline rounded-2xl p-4"><b>Workplace</b><p class="text-white/60 text-sm mt-1">Krishna Prints, Surir</p></div><div class="white-outline rounded-2xl p-4"><b>Role</b><p class="text-white/60 text-sm mt-1">Graphic Design Intern</p></div><div class="white-outline rounded-2xl p-4"><b>Target</b><p class="text-white/60 text-sm mt-1">Design Internships</p></div></div>
+      </section>
+
+      <section id="skills" class="section-card reveal rounded-[28px] p-8 small-panel min-h-[390px] relative overflow-hidden">
+        <p class="text-accent text-xs font-black tracking-[.3em] uppercase">Skills & Tools</p><h2 class="headline text-7xl mt-4">SKILLS & TOOLS</h2><p class="script text-4xl -mt-3">Designer</p>
+        <div class="mt-7 space-y-5">
+          <div class="skill" data-val="95"><div class="flex justify-between text-sm font-black"><span>CorelDRAW</span><span class="skill-count" data-target="95">0%</span></div><div class="h-2 bg-white/10 rounded-full mt-2"><div class="skill-fill h-full bg-accent rounded-full"></div></div></div>
+          <div class="skill" data-val="90"><div class="flex justify-between text-sm font-black"><span>Canva</span><span class="skill-count" data-target="90">0%</span></div><div class="h-2 bg-white/10 rounded-full mt-2"><div class="skill-fill h-full bg-accent rounded-full"></div></div></div>
+          <div class="skill" data-val="85"><div class="flex justify-between text-sm font-black"><span>Typography & Print Design</span><span class="skill-count" data-target="85">0%</span></div><div class="h-2 bg-white/10 rounded-full mt-2"><div class="skill-fill h-full bg-accent rounded-full"></div></div></div>
+          <div class="skill" data-val="75"><div class="flex justify-between text-sm font-black"><span>Filmora / Video Editing</span><span class="skill-count" data-target="75">0%</span></div><div class="h-2 bg-white/10 rounded-full mt-2"><div class="skill-fill h-full bg-accent rounded-full"></div></div></div>
+          <div class="skill" data-val="75"><div class="flex justify-between text-sm font-black"><span>Photoshop</span><span class="skill-count" data-target="75">0%</span></div><div class="h-2 bg-white/10 rounded-full mt-2"><div class="skill-fill h-full bg-accent rounded-full"></div></div></div>
+        </div>
+      </section>
+
+      <section id="experience" class="section-card reveal rounded-[28px] p-8 small-panel min-h-[430px] relative overflow-hidden">
+        <p class="text-accent text-xs font-black tracking-[.3em] uppercase">Print Media</p><h2 class="headline text-7xl mt-4">PRINT MEDIA</h2><p class="script text-4xl -mt-3">Design</p><div class="mt-8"><span class="orange-btn px-3 py-1 rounded-full text-xs font-black">Active Intern</span><h3 class="mt-4 text-2xl font-black">Graphic Design Intern</h3><p class="text-white/65 font-bold">Krishna Prints, Surir</p><p class="text-accent mt-2 font-black">March 2026 – Present</p><ul class="mt-6 space-y-3 text-white/70 text-sm"><li>• Banners, posters and flex layouts</li><li>• Social media creatives</li><li>• Print-ready PDF, CDR and TIFF files</li><li>• Customer design handling and fast revisions</li></ul></div>
+      </section>
+
+      <section id="projects" class="section-card reveal rounded-[28px] p-8 big-panel min-h-[430px] relative overflow-hidden">
+        <span class="scribble top-8 right-10">~</span><p class="text-accent text-xs font-black tracking-[.3em] uppercase">Social Media</p><h2 class="headline text-7xl sm:text-8xl mt-4">SOCIAL MEDIA</h2><p class="script text-5xl -mt-4">Designs</p>
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <button onclick="openProjectDetails('Banner & Flex Design','Commercial banners and flex layouts created with print-ready measurements and customer-focused design.')" class="text-left white-outline rounded-2xl p-5 hover:bg-white/10 transition"><i data-lucide="panel-top" class="text-accent mb-4"></i><b>Banner & Flex</b><p class="text-white/55 text-sm mt-2">Large format layouts</p></button>
+          <button onclick="openProjectDetails('Social Media Creative','Business posts and promotional creatives made for local shops and digital publishing.')" class="text-left white-outline rounded-2xl p-5 hover:bg-white/10 transition"><i data-lucide="instagram" class="text-accent mb-4"></i><b>Social Posts</b><p class="text-white/55 text-sm mt-2">Digital creatives</p></button>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-4">
+          <button onclick="openProjectDetails('Print Media Design','Posters, visiting cards, brochures, flex and print-ready artwork prepared for clean output.')" class="text-left white-outline rounded-2xl p-5 hover:bg-white/10 transition"><i data-lucide="printer" class="text-accent mb-4"></i><b>Print Media</b><p class="text-white/55 text-sm mt-2">Posters, cards, flex</p></button>
+          <button onclick="openProjectDetails('Video Editing','Promotional reels, shop ads and short video edits with transitions and music alignment.')" class="text-left white-outline rounded-2xl p-5 hover:bg-white/10 transition"><i data-lucide="video" class="text-accent mb-4"></i><b>Video Editing</b><p class="text-white/55 text-sm mt-2">Reels & ads</p></button>
+        </div></section>
+
+      <section id="showcase" class="section-card reveal rounded-[28px] p-8 full-panel relative overflow-hidden">
+        <span class="scribble top-8 right-12">⌁</span><p class="text-accent text-xs font-black tracking-[.3em] uppercase">Illustrations & Branding</p><h2 class="headline text-7xl sm:text-9xl mt-4">SHOWCASE</h2><p class="script text-5xl sm:text-6xl -mt-5">Designs</p>
+        <div class="mt-8 grid lg:grid-cols-[1.5fr_.9fr] gap-6 items-stretch"><div class="showcase-media relative rounded-[26px] overflow-hidden bg-black white-outline"><div class="showcase-slide active"><img src="images/showcase/sample1.jpg" alt="Showcase 1"></div><div class="showcase-slide"><img src="images/showcase/sample2.jpg" alt="Showcase 2"></div><div class="showcase-slide"><img src="images/showcase/sample3.jpg" alt="Showcase 3"></div><div class="showcase-slide"><img src="images/showcase/sample4.jpg" alt="Showcase 4"></div><button onclick="prevShowcase()" class="absolute left-4 top-1/2 -translate-y-1/2 orange-btn w-12 h-12 rounded-full grid place-items-center z-10"><i data-lucide="chevron-left"></i></button><button onclick="nextShowcase()" class="absolute right-4 top-1/2 -translate-y-1/2 orange-btn w-12 h-12 rounded-full grid place-items-center z-10"><i data-lucide="chevron-right"></i></button></div><div class="grid grid-cols-2 gap-4"><div class="white-outline rounded-2xl p-5"><b>Branding</b><p class="text-white/55 text-sm mt-2">Logo, cards, identity</p></div><div class="white-outline rounded-2xl p-5"><b>Social</b><p class="text-white/55 text-sm mt-2">Posts, ads, thumbnails</p></div><div class="white-outline rounded-2xl p-5"><b>Print Media</b><p class="text-white/55 text-sm mt-2">Flex, posters, banners</p></div><div class="white-outline rounded-2xl p-5"><b>Video Editing</b><p class="text-white/55 text-sm mt-2">Short promos</p></div></div></div>
+      </section>
+
+
+
+      <!-- FLOATING CARDS AUTO SHOWCASE
+           Replace images from these paths:
+           images/floating/project1.jpg
+           images/floating/project2.jpg
+           images/floating/project3.jpg
+           images/floating/project4.jpg
+           images/floating/project5.jpg
+           images/floating/project6.jpg
+           Tip: keep your images in images/floating/ folder. Any size image will auto-fit inside the cards. -->
+      <section id="floating-showcase" class="section-card reveal rounded-[28px] p-8 full-panel relative overflow-hidden">
+        <span class="scribble top-8 right-12">~</span>
+        <p class="text-accent text-xs font-black tracking-[.3em] uppercase">Featured Creative Showcase</p>
+        <h2 class="headline text-7xl sm:text-9xl mt-4">FLOATING</h2>
+        <p class="script text-5xl sm:text-6xl -mt-5">Creative Cards</p>
+        <p class="mt-6 text-white/65 max-w-2xl">Auto-moving premium cards for your best graphic design, print media, AI projects and video editing work.</p>
+
+        <div class="floating-showcase-wrap">
+          <div class="floating-track">
+            <article class="floating-card">
+              <img src="images/floating/project1.jpg" alt="Krishna Prints ERP" class="floating-card-img" loading="lazy">
+</article>
+
+            <article class="floating-card">
+              <img src="images/floating/project2.jpg" alt="Graphic Design Work" class="floating-card-img" loading="lazy">
+</article>
+
+            <article class="floating-card">
+              <img src="images/floating/project3.jpg" alt="Social Media Creatives" class="floating-card-img" loading="lazy">
+</article>
+
+            <article class="floating-card">
+              <img src="images/floating/project4.jpg" alt="Video Editing" class="floating-card-img" loading="lazy">
+</article>
+
+            <article class="floating-card">
+              <img src="images/floating/project5.jpg" alt="Print Media Design" class="floating-card-img" loading="lazy">
+</article>
+
+            <article class="floating-card">
+              <img src="images/floating/project6.jpg" alt="AI Made Projects" class="floating-card-img" loading="lazy">
+</article>
+
+            <!-- Duplicate set for seamless infinite auto-slide -->
+            <article class="floating-card">
+              <img src="images/floating/project1.jpg" alt="Krishna Prints ERP" class="floating-card-img" loading="lazy">
+</article>
+            <article class="floating-card">
+              <img src="images/floating/project2.jpg" alt="Graphic Design Work" class="floating-card-img" loading="lazy">
+</article>
+            <article class="floating-card">
+              <img src="images/floating/project3.jpg" alt="Social Media Creatives" class="floating-card-img" loading="lazy">
+</article>
+            <article class="floating-card">
+              <img src="images/floating/project4.jpg" alt="Video Editing" class="floating-card-img" loading="lazy">
+</article>
+            <article class="floating-card">
+              <img src="images/floating/project5.jpg" alt="Print Media Design" class="floating-card-img" loading="lazy">
+</article>
+            <article class="floating-card">
+              <img src="images/floating/project6.jpg" alt="AI Made Projects" class="floating-card-img" loading="lazy">
+</article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section-card reveal rounded-[28px] p-8 full-panel text-center relative overflow-hidden">
+        <span class="scribble top-6 left-16">~</span><span class="scribble bottom-6 right-16">⌁</span><p class="text-accent text-xs font-black tracking-[.3em] uppercase">For Attention</p><h2 class="headline text-[88px] sm:text-[160px] mt-4">THANK YOU</h2><p class="script text-5xl sm:text-7xl -mt-8">Contact</p><p class="mt-8 text-white/65 max-w-2xl mx-auto">Available for graphic design internships, print design work, social media creatives and local business design projects.</p><div class="mt-8 flex flex-wrap justify-center gap-4"><a href="mailto:luckyvarshneyl.1025@gmail.com" class="white-outline px-6 py-4 rounded-full font-black flex gap-2"><i data-lucide="mail"></i>luckyvarshneyl.1025@gmail.com</a><a href="tel:+918954865082" class="white-outline px-6 py-4 rounded-full font-black flex gap-2"><i data-lucide="phone"></i>8954865082</a><button onclick="downloadResume()" class="orange-btn px-6 py-4 rounded-full font-black flex gap-2"><i data-lucide="download"></i>Resume</button></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="projectModal" onclick="closeProjectModal(event)" class="hidden fixed inset-0 z-[100] modal-backdrop p-4 grid place-items-center"><div class="section-card rounded-[28px] p-7 max-w-lg w-full"><div class="flex justify-between gap-4"><h3 id="modalTitle" class="text-2xl font-black"></h3><button onclick="closeProjectModal()" class="text-white/60 hover:text-white"><i data-lucide="x"></i></button></div><p id="modalDesc" class="text-white/65 mt-4 leading-relaxed"></p></div></div>
+  <footer class="py-8 bg-black text-white/45 text-center text-sm">© 2026 Lucky Varshney. Graphic Design Portfolio.</footer>
+
+  <script>
+    function icons(){ if(window.lucide) lucide.createIcons(); }
+    document.getElementById('mobileBtn')?.addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+    document.querySelectorAll('#mobileMenu a, #mobileMenu button').forEach(item=>item.addEventListener('click',()=>document.getElementById('mobileMenu')?.classList.add('hidden')));
+    function downloadResume(){ window.open('resume.pdf','_blank'); }
+    let skillsAnimated=false;
+    function animateNumber(el,target,duration=1600){
+      const start=performance.now();
+      function tick(now){
+        const progress=Math.min((now-start)/duration,1);
+        const eased=1-Math.pow(1-progress,3);
+        el.textContent=Math.round(target*eased)+'%';
+        if(progress<1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    function animateSkills(){
+      if(skillsAnimated) return; skillsAnimated=true;
+      document.querySelectorAll('.skill').forEach(s=>{
+        const target=Number(s.dataset.val||0);
+        s.querySelector('.skill-fill').style.width=target+'%';
+        const count=s.querySelector('.skill-count');
+        if(count) animateNumber(count,target,1700);
+      });
+    }
+    function initReveal(){ const items=document.querySelectorAll('.reveal'); const io=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } }); },{threshold:.12}); items.forEach(el=>io.observe(el)); }
+    function autoFitShowcase(){ document.querySelectorAll('.showcase-slide img').forEach(img=>{ img.loading='lazy'; img.addEventListener('load',()=>{ img.style.objectFit='contain'; }); }); }
+    let pIndex=0; function rotateProfile(){ const slides=[...document.querySelectorAll('.profile-slide')]; if(!slides.length)return; slides[pIndex].classList.remove('active'); pIndex=(pIndex+1)%slides.length; slides[pIndex].classList.add('active'); }
+    let showcaseIndex=0; function updateShowcase(){ const s=[...document.querySelectorAll('.showcase-slide')]; s.forEach((x,i)=>x.classList.toggle('active',i===showcaseIndex)); }
+    function nextShowcase(){ const s=document.querySelectorAll('.showcase-slide'); if(!s.length)return; showcaseIndex=(showcaseIndex+1)%s.length; updateShowcase(); }
+    function prevShowcase(){ const s=document.querySelectorAll('.showcase-slide'); if(!s.length)return; showcaseIndex=(showcaseIndex-1+s.length)%s.length; updateShowcase(); }
+    function openProjectDetails(title,desc){ document.getElementById('modalTitle').textContent=title; document.getElementById('modalDesc').textContent=desc; document.getElementById('projectModal').classList.remove('hidden'); icons(); }
+    function closeProjectModal(event){ if(event && event.target.id!=='projectModal') return; document.getElementById('projectModal').classList.add('hidden'); }
+    function scrollToSkillCard(){ document.getElementById('skills')?.scrollIntoView({behavior:'smooth'}); }
+    function toggleCardFlip(){}
+    function lockHeroName(){
+      const name=document.getElementById('heroName');
+      if(!name) return;
+      name.style.opacity='1';
+      name.style.visibility='visible';
+      name.style.transform='none';
+      setTimeout(()=>{
+        name.classList.remove('hero-name-intro');
+        name.classList.add('hero-name-stable');
+        name.style.animation='none';
+      },1200);
+    }
+    document.addEventListener('DOMContentLoaded', lockHeroName);
+    window.addEventListener('load',()=>{ icons(); animateSkills(); initReveal(); autoFitShowcase(); lockHeroName(); setInterval(rotateProfile,3000); setInterval(nextShowcase,5000); });
+  </script>
+</body>
+</html>
